@@ -1,0 +1,13 @@
+Style/Documentation:
+  Enabled: false
+
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - "bin/**/*"
+    - "db/**/*"
+    - "vendor/**/*"
+    - "node_modules/**/*"
+    - "tmp/**/*"
+    - "git_hooks/**/*"
+  TargetRubyVersion: 3.2.2
