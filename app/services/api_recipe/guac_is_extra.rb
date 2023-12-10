@@ -20,6 +20,20 @@ module ApiRecipe
         data = resp.body
         JSON.parse(data)
       end
+
+      def cache_ingredients
+        fetch_ingredients.each do |ing|
+          next if ing.to_s.strip.blank?
+
+          puts "Adding: #{ing.downcase}"
+          Ingredient.where(name: ing.downcase,
+                           site_klass: name).first_or_create
+        end
+      end
+
+      def reset_cache!
+        Ingredient.where(site_klass: name).destroy_all
+      end
     end
   end
 end

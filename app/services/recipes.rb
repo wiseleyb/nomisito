@@ -11,17 +11,16 @@ class Recipes
       # TODO: If this was some million ingredient list you'd batch this up
       RECIPE_KLASSES.each do |rk|
         klass = rk.constantize
-        klass.fetch_ingredients.each do |ing|
-          next if ing.to_s.strip.blank?
-
-          puts "Adding: #{ing.downcase}"
-          Ingredient.where(name: ing.downcase).first_or_create
-        end
+        klass.cache_ingredients
       end
+      puts "Igredients loaded: #{Ingerdient.count}"
     end
 
     def reset_ingredients!
-      Ingredient.destroy_all
+      RECIPE_KLASSES.each do |rk|
+        klass = rk.constantize
+        klass.reset_cache!
+      end
     end
   end
 end

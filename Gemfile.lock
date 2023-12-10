@@ -90,9 +90,16 @@ GEM
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
@@ -120,6 +127,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.20.0)
     msgpack (1.7.2)
+    multi_xml (0.6.0)
     net-imap (0.4.7)
       date
       net-protocol
@@ -242,6 +250,8 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  dotenv-rails
+  httparty
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
