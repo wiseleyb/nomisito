@@ -14,15 +14,20 @@ class Recipe
   end
 
   def dietary_blocked?(dietary_restrictions)
-    drestrictions = Array(dietary_restrictions).map(&:downcase)
+    restrictions =
+      Dietary.where(id: dietary_restrictions).map(&:name).map(&:downcase)
+    return false unless restrictions.present?
 
     ingredients.each do |ingr|
-      drs = ingr.dietary_restrictions.map(&:downcase)
-      drestrictions.each do |dr|
-        return true unless drs.include?(dr.downcase)
-      end
+      next if (ingr.dietary_restrictions.map(&:downcase) & restrictions).present?
+
+      return true
     end
     false
+  end
+
+  def dietary_restrictions
+    ingredients.map(&:dietary_restrictions).reduce { |a, b| a & b }
   end
 
   def debug

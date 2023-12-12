@@ -7,8 +7,7 @@ class Search
     @klass = site_klass.constantize
   end
 
-  def search(query, ingredient_options: {}, dietary_restrictions: [])
-    # NOTE: this can be done more efficiently in the latest version of ruby
+  def search(query = '', ingredient_options: {}, dietary_restrictions: [])
     @klass.search(query, ingredient_options:, dietary_restrictions:)
   end
 end

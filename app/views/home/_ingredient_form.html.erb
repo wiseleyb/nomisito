@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      <th>Ingredient</th>
+      <th>Must include</th>
+      <th>Must not include</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Ingredient.all.order('name asc').each do |ingr| %>
+      <tr>
+        <td><%= ingr.name %></td>
+        <td>
+          <%= check_box_tag 'included[]',
+                            ingr.id,
+                            Array(params[:included]).include?(ingr.id.to_s) %>
+        </td>
+        <td>
+          <%= check_box_tag 'excluded[]',
+                            ingr.id,
+                            Array(params[:excluded]).include?(ingr.id.to_s) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

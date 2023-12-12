@@ -44,34 +44,15 @@ module ApiRecipe
       def search(query,
                  ingredient_options: {},
                  dietary_restrictions: [])
-        uri = URI('https://guac-is-extra.herokuapp.com')
-        params = {
-          name: query
-        }
-
-        # process ingredients
-        excluded = []
-        included = []
-        ingredient_options.each do |k, v|
-          ingr = Ingredient.find_by_id(k)
-          excluded << ingr.name if ingr && v == false
-          included << ingr.name if ingr && v == true
-        end
-        params[:includeIngredients] = included unless included.empty?
-        params[:excludeIngredients] = excluded unless excluded.empty?
-
-        uri.query = params.to_query
-
-        puts ''
-        puts "Requesting: #{uri}"
-
-        res = Net::HTTP.get_response(uri)
         recipes = []
-        JSON.parse(res.body).each do |recipe|
+        res = search_hash(query, ingredient_options:)
+
+        res.each do |recipe|
           r = Recipe.new(recipe['name'])
           recipe['ingredients'].map do |ingr|
             r.ingredients <<
-              Ingredient.where(site_klass: name, name: ingr['name']).first
+              Ingredient.where(site_klass: name,
+                               name: ingr['name'].downcase).first
             r.ingredients_desc << json_ingredient_to_desc(ingr)
           end
           r.ingredients.compact!
@@ -85,6 +66,35 @@ module ApiRecipe
         end
 
         recipes
+      end
+
+      def search_hash(query,
+                      ingredient_options: {})
+        uri = URI('https://guac-is-extra.herokuapp.com')
+        params = {
+          name: query
+        }
+
+        # process ingredients
+        excluded = []
+        included = []
+        ingredient_options.each do |k, v|
+          ingr = Ingredient.find_by_id(k)
+          excluded << ingr.name if ingr && v == false
+          included << ingr.name if ingr && v == true
+        end
+        included = included.map(&:strip).compact.join(',')
+        excluded = excluded.map(&:strip).compact.join(',')
+        params[:includeIngredients] = included unless included.blank?
+        params[:excludeIngredients] = excluded unless excluded.blank?
+
+        uri.query = params.to_query
+
+        puts ''
+        puts "Requesting: #{uri}"
+
+        res = Net::HTTP.get_response(uri)
+        JSON.parse(res.body)
       end
 
       def json_ingredient_to_desc(ingr)

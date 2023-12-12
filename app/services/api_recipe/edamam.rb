@@ -37,7 +37,7 @@ module ApiRecipe
         params = {
           app_id: ENV['EDAMAM_APP_ID'],
           app_key: ENV['EDAMAM_APP_KEY'],
-          ingr: ingredient_name,
+          ingr: ingredient_name.strip.downcase,
           'nutrition-type': 'cooking'
         }
         uri.query = params.to_query

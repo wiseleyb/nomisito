@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      <th>Must be</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Dietary.all.order('name asc').each do |diet| %>
+      <tr>
+        <td>
+          <%= check_box_tag 'dietary[]',
+                            diet.id,
+                            Array(params[:dietary]).include?(diet.id.to_s) %>
+          <%= diet.name.titleize %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

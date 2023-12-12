@@ -1,0 +1,39 @@
+<% include_ingr_names = Ingredient.where(id: params[:included]).map(&:name) %>
+<h3><%=recipe.name%></h3>
+
+<h5>Ingredients:</h5>
+<ul>
+  <% recipe.ingredients_desc.each do |ingr| %>
+    <li>
+      <% if include_ingr_names.select {|i| ingr.downcase.include?(i.downcase) }.any? %>
+        <b><%= ingr %></b>
+      <% else %>
+        <%= ingr %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<h5>Steps:</h5>
+<ul>
+  <% recipe.steps.each do |s| %>
+    <li><%= s %></li>
+  <% end %>
+</ul>
+
+<%
+  res = []
+  dietary = Dietary.where(id: params[:dietary]).map(&:name)
+  recipe.dietary_restrictions.sort.each do |dr|
+    if dietary.include?(dr)
+      res << %(<b>#{dr.titleize}</b>)
+    else
+      res << dr.titleize
+    end
+  end
+%>
+<h5>Dietary Restrictions:</h5>
+<p><%= res.join(', ').html_safe %></p>
+
+<% # render partial: 'debug_dietary_restrictions', locals: { recipe: recipe } %>
+<hr/>

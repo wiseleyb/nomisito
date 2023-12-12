@@ -1,0 +1,29 @@
+<%= form_with url: '/', method: :get do |f| %>
+  <%= f.label :query, "Search by Recipe Name:" %>
+  <%= text_field_tag :query,
+    params[:query],
+    placeholder: 'leave blank to get all recipes' %>
+  <%= f.submit "Search" %>
+  <br/>
+  <table>
+    <thead>
+      <tr>
+        <th>Ingredients</th>
+        <th>Dietary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr valign=top>
+        <td>
+          <%= render partial: 'ingredient_form' %>
+        </td>
+        <td>
+          <%= render partial: 'dietary_form' %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br/>
+  <%= f.submit "Search" %>
+<% end %>
+<%= render partial: 'debug' %>

@@ -1,0 +1,7 @@
+<% if @recipes %>
+  <h3>Results: <%= @recipes.size %></h3>
+
+  <% @recipes.each do |recipe| %>
+    <%= render partial: 'recipe', locals: { recipe: recipe } %>'
+  <% end %>
+<% end %>

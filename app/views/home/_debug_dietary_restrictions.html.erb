@@ -1,0 +1,7 @@
+<h5>Debug Ingredient Dietary Restrictions:</h5>
+<p>inc: <%= recipe.ingredients.uniq.size %> / desc: <%= recipe.ingredients_desc.uniq.size %></p>
+<ul>
+  <% recipe.ingredients.each do |incr| %>
+    <li><b><%=incr.name%>:</b> <%=incr.dietary_restrictions.sort.map(&:titleize).join(', ')%></li>
+  <% end %>
+</ul>
