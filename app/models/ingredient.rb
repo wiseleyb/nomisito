@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Ingredient < ApplicationRecord
+  include IngredientEdamamHelper
+
   def dietary_restrictions
-    edamam_nutrition['nutrients']['healthLabels'].compact
+    edamam_results['nutrients']['healthLabels'].compact
   end
 end

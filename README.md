@@ -58,4 +58,9 @@ explain why you chose the API you're using.
 rake db:create
 rake db:migrate
 rake setup:reset
+
+ApiRecipe::GuacIsExtra.reset_cache!
+ApiRecipe::GuacIsExtra.cache_ingredients
+ApiRecipe::Edamam.fetch_all_dietary
+Dietary.reset!
 ```

@@ -26,10 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_212057) do
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.string "site_klass"
-    t.string "edamam_food_id"
-    t.string "edamam_img"
-    t.string "edamam_measure_uri"
-    t.jsonb "edamam_nutrition"
+    t.jsonb "edamam_results", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_ingredients_on_name"

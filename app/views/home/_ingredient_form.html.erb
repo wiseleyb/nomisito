@@ -1,26 +1,23 @@
-<table>
-  <thead>
+<table class='ingredient-table'>
+  <tr>
+    <th>Ingredient</th>
+    <th>Must include</th>
+    <th>Must not include</th>
+  </tr>
+  <% Ingredient.all.order('name asc').each do |ingr| %>
     <tr>
-      <th>Ingredient</th>
-      <th>Must include</th>
-      <th>Must not include</th>
+      <td><%= image_tag(ingr.edamam_img, class: 'ingredient-image') if ingr.edamam_img %></td>
+      <td><%= ingr.name %></td>
+      <td>
+        <%= check_box_tag 'included[]',
+                          ingr.id,
+                          Array(params[:included]).include?(ingr.id.to_s) %>
+      </td>
+      <td>
+        <%= check_box_tag 'excluded[]',
+                          ingr.id,
+                          Array(params[:excluded]).include?(ingr.id.to_s) %>
+      </td>
     </tr>
-  </thead>
-  <tbody>
-    <% Ingredient.all.order('name asc').each do |ingr| %>
-      <tr>
-        <td><%= ingr.name %></td>
-        <td>
-          <%= check_box_tag 'included[]',
-                            ingr.id,
-                            Array(params[:included]).include?(ingr.id.to_s) %>
-        </td>
-        <td>
-          <%= check_box_tag 'excluded[]',
-                            ingr.id,
-                            Array(params[:excluded]).include?(ingr.id.to_s) %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% end %>
 </table>

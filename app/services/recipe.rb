@@ -4,10 +4,16 @@ class Recipe
   attr_accessor :name,
                 :ingredients,
                 :ingredients_desc,
+                :site_klass,
                 :steps
 
-  def initialize(name, ingredients: [], ingredient_desc: [], steps: [])
+  def initialize(name,
+                 site_klass,
+                 ingredients: [],
+                 ingredient_desc: [],
+                 steps: [])
     @name = name
+    @site_klass = site_klass
     @ingredients = Array(ingredients).compact
     @ingredients_desc = Array(ingredient_desc).compact
     @steps = Array(steps)
@@ -15,18 +21,22 @@ class Recipe
 
   def dietary_blocked?(dietary_restrictions)
     restrictions =
-      Dietary.where(id: dietary_restrictions).map(&:name).map(&:downcase)
+      Dietary.where(site_klass:,
+                    id: dietary_restrictions).map(&:name).map(&:downcase)
     return false unless restrictions.present?
 
     ingredients.each do |ingr|
-      next if (ingr.dietary_restrictions.map(&:downcase) & restrictions).present?
+      if (ingr.dietary_restrictions.map(&:downcase) & restrictions).size ==
+         restrictions.size
+        next
+      end
 
       return true
     end
     false
   end
 
-  def dietary_restrictions
+  def allowed_dietary_restrictions
     ingredients.map(&:dietary_restrictions).reduce { |a, b| a & b }
   end
 
@@ -34,11 +44,12 @@ class Recipe
     puts ''
     puts '-' * 80
     puts [
-      @name,
+      name,
+      site_klass,
       "\nIngredients:",
-      @ingredients_desc.join("\n"),
+      ingredients_desc.join("\n"),
       "\nSteps:",
-      @steps.join("\n")
+      steps.join("\n")
     ].join("\n")
   end
 end

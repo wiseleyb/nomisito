@@ -24,7 +24,7 @@
 <%
   res = []
   dietary = Dietary.where(id: params[:dietary]).map(&:name)
-  recipe.dietary_restrictions.sort.each do |dr|
+  recipe.allowed_dietary_restrictions.sort.each do |dr|
     if dietary.include?(dr)
       res << %(<b>#{dr.titleize}</b>)
     else

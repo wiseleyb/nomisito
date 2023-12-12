@@ -5,7 +5,7 @@
     placeholder: 'leave blank to get all recipes' %>
   <%= f.submit "Search" %>
   <br/>
-  <table>
+  <table class='form-select-table'>
     <thead>
       <tr>
         <th>Ingredients</th>
@@ -14,10 +14,10 @@
     </thead>
     <tbody>
       <tr valign=top>
-        <td>
+        <td class='form-select-table-td'>
           <%= render partial: 'ingredient_form' %>
         </td>
-        <td>
+        <td class='form-select-table-td'>
           <%= render partial: 'dietary_form' %>
         </td>
       </tr>

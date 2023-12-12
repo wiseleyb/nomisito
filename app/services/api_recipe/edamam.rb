@@ -4,65 +4,45 @@ module ApiRecipe
   class Edamam
     class << self
       def fetch_all_dietary
-        Ingredient.where(edamam_food_id: nil).find_each do |ing|
-          fetch_dietary(ing.id)
-          sleep 3 # don't exceed api rate limited on Edamam
+        Ingredient.where(edamam_results: {}).find_each do |ing|
+          fetch_data(ing.id)
         end
       end
 
-      def fetch_dietary(ingredient_id)
-        ingredient = Ingredient.find_by_id(ingredient_id)
+      def fetch_data(ingredient_id)
         puts ''
-        puts "Loading nutrition: #{ingredient.name}"
-        res = fetch_ingredient(ingredient.name)
-        ingredient.edamam_food_id = res[:food_id]
-        ingredient.edamam_img = res[:img]
-        ingredient.edamam_measure_uri = res[:measure_uri]
-        ingredient.edamam_nutrition = res
-        ingredient.save
+        puts "Loading nutrition: #{ingredient_id}"
+        fetch_ingredient(ingredient_id)
+        fetch_dietary(ingredient_id)
       rescue StandardError => e
         puts "Error on ingredient_id: #{ingredient_id}"
         puts e.message
       end
 
-      def fetch_ingredient(ingredient_name)
+      def fetch_ingredient(ingredient_id)
+        ingredient = Ingredient.find_by_id(ingredient_id)
         # Docs on api for this
         # https://developer.edamam.com/food-database-api-docs
-
-        results = {}
-
-        headers = { 'Accept' => 'application/json' }
-
         uri = URI('https://api.edamam.com/api/food-database/v2/parser')
         params = {
           app_id: ENV['EDAMAM_APP_ID'],
           app_key: ENV['EDAMAM_APP_KEY'],
-          ingr: ingredient_name.strip.downcase,
+          ingr: ingredient.name.strip.downcase,
           'nutrition-type': 'cooking'
         }
         uri.query = params.to_query
 
-        puts ''
-        puts "Requesting: #{uri}"
+        res = ApiRecipe::Utils.http_get(uri, pause: 2)
+        ingredient.edamam_results = {}
+        ingredient.edamam_results['parse'] = res
+        ingredient.save
+        ingredient
+      end
 
-        response = Net::HTTP.get_response(uri, headers)
-        res = response.read_body
-        results[:parse] = res
-        data = JSON.parse(res)['hints'].first
-
-        # get nutrients
-        results[:food_id] = data['food']['foodId']
-        results[:img] = data['food']['image']
-        results[:measure_uri] = data['measures'].first['uri']
-        results[:ingr_h] = {
-          ingredients: [
-            {
-              quantity: 0,
-              measureURI: results[:measure_uri],
-              foodId: results[:food_id]
-            }
-          ]
-        }
+      # relies on data being populated in ingredient in fetch_ingredient
+      def fetch_dietary(ingredient_id)
+        ingredient = Ingredient.find_by_id(ingredient_id)
+        ingredient.edamam_hints
 
         uri = URI('https://api.edamam.com/api/food-database/v2/nutrients')
         params = {
@@ -71,15 +51,12 @@ module ApiRecipe
         }
         uri.query = params.to_query
 
-        body = results[:ingr_h].to_json
+        body = ingredient.edamam_ingr_h.to_json # results[:ingr_h].to_json
 
-        puts ''
-        puts "Requesting: #{uri}"
-        puts "Body: #{body}"
-        headers['Content-Type'] = 'application/json'
-        res = HTTParty.post(uri.to_s, body:, headers:)
-        results[:nutrients] = res
-        results
+        res = ApiRecipe::Utils.http_post(uri, body:, pause: 2)
+        ingredient.edamam_results['nutrients'] = res
+        ingredient.save
+        ingredient
       end
     end
   end

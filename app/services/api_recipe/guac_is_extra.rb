@@ -3,6 +3,23 @@
 module ApiRecipe
   class GuacIsExtra
     class << self
+      def cache_ingredients
+        fetch_ingredients.each do |ing|
+          next if ing.to_s.strip.blank?
+
+          puts "Adding: #{ing.downcase}"
+          ingr_base.where(name: ing.downcase).first_or_create
+        end
+      end
+
+      def reset_cache!
+        ingr_base.destroy_all
+      end
+
+      def ingr_base
+        Ingredient.where(site_klass: 'ApiRecipe::GuacIsExtra')
+      end
+
       # Fetches ingredient list from all configured recipe urls
       def fetch_ingredients
         # TODO: This should accomodate bad data
@@ -16,23 +33,7 @@ module ApiRecipe
         # TODO: While mostly for setup - IRL you should add retry logic
         #       here for http errors
         url = 'https://guac-is-extra.herokuapp.com/'
-        resp = Net::HTTP.get_response(URI.parse(url))
-        data = resp.body
-        JSON.parse(data)
-      end
-
-      def cache_ingredients
-        fetch_ingredients.each do |ing|
-          next if ing.to_s.strip.blank?
-
-          puts "Adding: #{ing.downcase}"
-          Ingredient.where(name: ing.downcase,
-                           site_klass: name).first_or_create
-        end
-      end
-
-      def reset_cache!
-        Ingredient.where(site_klass: name).destroy_all
+        ApiRecipe::Utils.http_get(url)
       end
 
       # query: any string, example 'carne asada'
@@ -48,11 +49,10 @@ module ApiRecipe
         res = search_hash(query, ingredient_options:)
 
         res.each do |recipe|
-          r = Recipe.new(recipe['name'])
+          r = Recipe.new(recipe['name'], name)
           recipe['ingredients'].map do |ingr|
             r.ingredients <<
-              Ingredient.where(site_klass: name,
-                               name: ingr['name'].downcase).first
+              ingr_base.where(name: ingr['name'].downcase).first
             r.ingredients_desc << json_ingredient_to_desc(ingr)
           end
           r.ingredients.compact!
@@ -79,7 +79,7 @@ module ApiRecipe
         excluded = []
         included = []
         ingredient_options.each do |k, v|
-          ingr = Ingredient.find_by_id(k)
+          ingr = ingr_base.find_by_id(k)
           excluded << ingr.name if ingr && v == false
           included << ingr.name if ingr && v == true
         end
