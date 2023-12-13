@@ -16,8 +16,9 @@ module ApiRecipe
         ingr_base.destroy_all
       end
 
+      # Scopes DB calls to ingredients to this class
       def ingr_base
-        Ingredient.where(site_klass: 'ApiRecipe::GuacIsExtra')
+        Ingredient.where(site_klass: name)
       end
 
       # Fetches ingredient list from all configured recipe urls
