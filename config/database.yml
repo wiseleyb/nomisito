@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: nomisito_production
-  username: nomisito
-  password: <%= ENV["NOMISITO_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  # database: nomisito_production
+  # username: nomisito
+  # password: <%= ENV["NOMISITO_DATABASE_PASSWORD"] %>
