@@ -1,0 +1,162 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.edamam.com/api/food-database/v2/parser?app_id=19297129&app_key=39891f8d61df2d5168fc473d049f28d3&ingr=(7%20inch)%20flour%20tortillas&nutrition-type=cooking
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Wed, 13 Dec 2023 19:50:49 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Served-By:
+      - ip-10-0-1-9.ec2.internal/10.0.1.9
+      Vary:
+      - accept-encoding
+      Strict-Transport-Security:
+      - max-age=15552001
+      X-Request-Id:
+      - 485e637e8bd32b43a93796a0e77969ff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"text":"(7 inch) flour tortillas","parsed":[{"food":{"foodId":"food_a9ql6pdb639bs5b2nlvbob3w0mlj","label":"Flour
+        Tortilla","knownAs":"flour tortilla","nutrients":{"ENERC_KCAL":297.0,"PROCNT":8.01,"FAT":7.58,"CHOCDF":49.3,"FIBTG":2.4},"category":"Generic
+        foods","categoryLabel":"food","image":"https://www.edamam.com/food-img/357/357e415685787e6d6844e8d08c1b1586.jpg"},"quantity":7.0,"measure":{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_unit","label":"Whole","weight":49.0}}],"hints":[{"food":{"foodId":"food_a9ql6pdb639bs5b2nlvbob3w0mlj","label":"Flour
+        Tortilla","knownAs":"flour tortilla","nutrients":{"ENERC_KCAL":297.0,"PROCNT":8.01,"FAT":7.58,"CHOCDF":49.3,"FIBTG":2.4},"category":"Generic
+        foods","categoryLabel":"food","image":"https://www.edamam.com/food-img/357/357e415685787e6d6844e8d08c1b1586.jpg"},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_unit","label":"Whole","weight":49.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":49.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","weight":49.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_wrap","label":"Wrap","weight":49.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_package","label":"Package","weight":484.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_aquoe41bz71axrbpfodoablvd7iy","label":"6
+        Inch Flour Tortilla","knownAs":"6 inch Flour Tortilla","nutrients":{"ENERC_KCAL":290.3225806451613,"PROCNT":9.677419354838708,"FAT":6.451612903225806,"CHOCDF":48.387096774193544,"FIBTG":3.225806451612903},"brand":"Taco
+        Del Mar","category":"Fast foods","categoryLabel":"meal","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":31.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":31.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_ajbxsisautrfsxazkh32hbf2a60u","label":"8-Inch
+        Flour Tortillas","knownAs":"8-INCH FLOUR TORTILLAS","nutrients":{"ENERC_KCAL":289.0,"PROCNT":6.670000076293945,"FAT":7.78000020980835,"CHOCDF":46.66999816894531,"FIBTG":2.200000047683716},"brand":"Target
+        Stores","category":"Packaged foods","categoryLabel":"food","foodContentsLabel":"ORGANIC
+        WHEAT FLOUR; WATER; ORGANIC PALM OIL; CONTAINS LESS THAN 2% OF BAKING POWDER
+        (SODIUM ACID PYROPHOSPHATE; BAKING SODA; CORN STARCH; MONOCALCIUM PHOSPHATE);
+        CITRIC ACID; ORGANIC SUGAR; ORGANIC CULTURED WHEAT STARCH; ORGANIC RYE SOUR;
+        ORGANIC VITAL WHEAT GLUTEN; SALT; YEAST.","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":45.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","quantity":1.0}],"servingsPerContainer":6.0},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":45.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","weight":45.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_package","label":"Package","weight":270.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_bvjdd7lb1g3jnmbi87p0xbw96h60","label":"10
+        Inch Flour Tortilla","knownAs":"10 inch Flour Tortilla","nutrients":{"ENERC_KCAL":295.7746478873239,"PROCNT":8.450704225352112,"FAT":7.04225352112676,"CHOCDF":50.70422535211267,"FIBTG":1.408450704225352},"brand":"Taco
+        Del Mar","category":"Fast foods","categoryLabel":"meal","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":71.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":71.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_au73iymadbkz5saorqxpdbi47aoy","label":"12
+        Inch Flour Tortilla","knownAs":"12 inch Flour Tortilla","nutrients":{"ENERC_KCAL":298.0769230769231,"PROCNT":7.6923076923076925,"FAT":6.730769230769231,"CHOCDF":50.0,"FIBTG":1.9230769230769231},"brand":"Taco
+        Del Mar","category":"Fast foods","categoryLabel":"meal","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":104.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":104.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_bhw0b95agm97s0abfignnb8fsvb3","label":"Corn
+        or Flour Tortilla","knownAs":"corn tortillas","nutrients":{"ENERC_KCAL":218.0,"PROCNT":5.7,"FAT":2.85,"CHOCDF":44.6,"FIBTG":6.3},"category":"Generic
+        foods","categoryLabel":"food","image":"https://www.edamam.com/food-img/b8a/b8ad23dcc06f2324f944e47eb579d644.jpg"},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_unit","label":"Whole","weight":24.0,"qualified":[{"qualifiers":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Qualifier_small","label":"small"}],"weight":24.0}]},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":24.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","weight":24.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_enchilada","label":"Enchilada","weight":19.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_a0bkeepb1l79x6bhsq0uwb2pzw9c","label":"Enchiladas,
+        6 Inch Flour Tortilla","knownAs":"Enchiladas, 6 Inch Flour Tortilla","nutrients":{"ENERC_KCAL":300.0,"PROCNT":6.666666666666667,"FAT":10.0,"CHOCDF":45.0,"FIBTG":1.6666666666666667},"brand":"Cafe
+        Rio","category":"Fast foods","categoryLabel":"meal","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","quantity":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":60.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":60.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","weight":60.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_aq6rd8hb0zvf0zbrgf71ab593bck","label":"10
+        Inch Flour Tortilla Wrap","knownAs":"10 inch Flour Tortilla Wrap","nutrients":{"ENERC_KCAL":295.7746478873239,"PROCNT":8.450704225352112,"FAT":7.04225352112676,"CHOCDF":49.29577464788732,"FIBTG":1.408450704225352},"brand":"Silver
+        Mine Subs","category":"Fast foods","categoryLabel":"meal","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_wrap","label":"Wrap","quantity":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":71.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":71.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_wrap","label":"Wrap","weight":71.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_boq88hbbbqvligbhloro7aj9ytki","label":"Burrito,
+        12 Inch Flour Tortilla","knownAs":"Burrito, 12 Inch Flour Tortilla","nutrients":{"ENERC_KCAL":291.3907284768212,"PROCNT":5.960264900662252,"FAT":9.271523178807948,"CHOCDF":44.37086092715232,"FIBTG":1.3245033112582782},"brand":"Cafe
+        Rio","category":"Fast foods","categoryLabel":"meal","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":151.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","quantity":1.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":151.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","weight":151.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_ba28k5obkzog08ae0zvz2b65048q","label":"Tacos,
+        6 Inch Flour Tortilla","knownAs":"Tacos, 6 Inch Flour Tortilla","nutrients":{"ENERC_KCAL":300.0,"PROCNT":6.666666666666667,"FAT":10.0,"CHOCDF":45.0,"FIBTG":1.6666666666666667},"brand":"Cafe
+        Rio","category":"Fast foods","categoryLabel":"meal","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":60.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","quantity":1.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":60.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","weight":60.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_baa7shxbo8he3lbg3ltfvarw67c5","label":"Tostada,
+        6 Inch Flour Tortilla","knownAs":"Tostada, 6 Inch Flour Tortilla","nutrients":{"ENERC_KCAL":300.0,"PROCNT":6.666666666666667,"FAT":10.0,"CHOCDF":45.0,"FIBTG":1.6666666666666667},"brand":"Cafe
+        Rio","category":"Fast foods","categoryLabel":"meal","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":60.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":60.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_b5q6zbfazbd8v4a2684thbfog0mk","label":"12
+        Inch Flour Tortilla Shell","knownAs":"12 inch Flour Tortilla Shell","nutrients":{"ENERC_KCAL":256.88073394495416,"PROCNT":9.174311926605505,"FAT":2.7522935779816518,"CHOCDF":49.54128440366973,"FIBTG":6.422018348623854},"brand":"Western
+        Sizzlin","category":"Fast foods","categoryLabel":"meal","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":109.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":109.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_b6msgblbftnjuday5tcnnbc0oca1","label":"6
+        Inch Flour Tortilla Shell","knownAs":"6 inch Flour Tortilla Shell","nutrients":{"ENERC_KCAL":241.37931034482756,"PROCNT":10.344827586206897,"FAT":3.4482758620689653,"CHOCDF":48.275862068965516,"FIBTG":6.896551724137931},"brand":"Western
+        Sizzlin","category":"Fast foods","categoryLabel":"meal","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":29.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":29.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_bvcas1vapfe0fcaawi5s9bnqrk9w","label":"Taco
+        Style, 6-Inch Flour Tortillas","knownAs":"TACO STYLE, 6-INCH FLOUR TORTILLAS","nutrients":{"ENERC_KCAL":267.0,"PROCNT":10.0,"FAT":8.329999923706055,"CHOCDF":46.66999816894531,"FIBTG":0.0},"brand":"Tops
+        Markets, LLC","category":"Packaged foods","categoryLabel":"food","foodContentsLabel":"UNBLEACHED
+        ENRICHED FLOUR (WHEAT FLOUR; MALTED BARLEY FLOUR; NIACIN; REDUCED IRON; THIAMIN
+        MONONITRATE [VITAMIN B1]; RIBOFLAVIN [VITAMIN B2]; FOLIC ACID); WATER; PALM
+        OIL; SALT; MONO- AND DIGLYCERIDES; WHEAT FLOUR; SODIUM BICARBONATE; CALCIUM
+        PROPIONATE; SODIUM ALUMINUM SULFATE; DEXTROSE; FUMARIC ACID; SODIUM ALUMINUM
+        PHOSPHATE; POTASSIUM SORBATE; CORN STARCH; MONOCALCIUM PHOSPHATE; CALCIUM
+        SULFATE; CONTAINS LESS THAN 2% OF THE FOLLOWING: CELLULOSE; CMC GUM; SODIUM
+        METABISULFITE; WHEAT STARCH; SOYBEAN OIL; HYDROGENATED SOYBEAN OIL; MONOCALCIUM
+        PHOSPHATE; XANTHAN GUM; ENZYMES.","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":30.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","quantity":1.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":30.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","weight":30.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_bqmhq71a9qsb0dbjx9y61a2ta7p0","label":"8-Inch
+        Flour Tortillas, Fajita Style","knownAs":"8-INCH FLOUR TORTILLAS, FAJITA STYLE","nutrients":{"ENERC_KCAL":289.0,"PROCNT":8.890000343322754,"FAT":8.890000343322754,"CHOCDF":46.66999816894531,"FIBTG":2.200000047683716},"brand":"Tops
+        Markets, LLC","category":"Packaged foods","categoryLabel":"food","foodContentsLabel":"UNBLEACHED
+        ENRICHED FLOUR (WHEAT FLOUR; MALTED BARLEY FLOUR; NIACIN; REDUCED IRON; THIAMIN
+        MONONITRATE [VITAMIN B1]; RIBOFLAVIN [VITAMIN B2] FOLIC ACID); WATER; PALM
+        OIL; SALT; MONO- AND DIGLYCERIDES; WHEAT FLOUR; SODIUM BICARBONATE; CALCIUM
+        PROPIONATE; SODIUM ALUMINUM SULFATE; DEXTROSE; FUMARIC ACID; SODIUM ALUMINUM
+        PHOSPHATE; POTASSIUM SORBATE; CORN STARCH; MONOCALCIUM PHOSPHATE; CALCIUM
+        SULFATE; CONTAINS LESS THAN 2% OF THE FOLLOWING: CELLULOSE; CMC GUM; SODIUM
+        METABISULFITE; WHEAT STARCH; SOYBEAN OIL; HYDROGENATED SOYBEAN OIL; MONOCALCIUM
+        PHOSPHATE; XANTHAN GUM; ENZYMES.","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","quantity":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":45.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":45.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","weight":45.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_bbtqg8gbqsk9dva1pf3rkbd7c9zx","label":"Market
+        Pantry Mini Size 4 - Inch Flour Tortilla 16 Oz","knownAs":"Market Pantry Mini
+        Size 4 - Inch Flour Tortilla 16 Oz","nutrients":{"ENERC_KCAL":211.64377169748246,"PROCNT":7.0547923899160825,"FAT":3.5273961949580412,"CHOCDF":38.801358144538455,"FIBTG":0.0},"brand":"TARGET
+        CORPORATION","category":"Packaged foods","categoryLabel":"food","foodContentsLabel":"Enriched
+        Bleached Wheat Flour; Flour; Niacin; Iron; Thiamin Mononitrate; Riboflavin;
+        Folic Acid; Water; Vegetable Shortening; Interesterified Soybean Oil; Hydrogenated
+        Soybean Oil; Baking Powder; Sodium Aluminum Phosphate; Potassium Bicarbonate;
+        Sodium Bicarbonate; Calcium Sulfate; Corn Starch; Ammonium Glutamate; Enzyme;
+        Salt; Potassium Sorbate; Calcium Propionate; Monoglycerides; Fumaric Acid;
+        Tartaric Acid; Dough Condition; Sodium Metabisulfite","image":"https://www.edamam.com/food-img/6fa/6faf92c5a1fbc1db7e65d586523cfe76.jpg","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","quantity":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","quantity":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_container","label":"Container","quantity":1.0}],"servingsPerContainer":16.0},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_container","label":"Container","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_package","label":"Package","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_baibk6wbunwhfbbttusgqbhpue25","label":"Flour
+        Tortilla, 8 Inch","knownAs":"Flour Tortilla, 8 inch","nutrients":{"ENERC_KCAL":317.0731707317073,"PROCNT":7.317073170731707,"FAT":9.75609756097561,"CHOCDF":48.78048780487805,"FIBTG":2.4390243902439024},"brand":"America''s
+        Taco Shop","category":"Fast foods","categoryLabel":"meal","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","quantity":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":41.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":41.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_tortilla","label":"Tortilla","weight":41.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_askfhbqavh837ga5qnszzay93hlw","label":"Flour
+        Tortilla, 10 Inch","knownAs":"Flour Tortilla, 10 inch","nutrients":{"ENERC_KCAL":295.7746478873239,"PROCNT":8.450704225352112,"FAT":7.04225352112676,"CHOCDF":50.70422535211267,"FIBTG":2.816901408450704},"brand":"Qdoba","category":"Fast
+        foods","categoryLabel":"meal","servingSizes":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","quantity":71.0}]},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":71.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0}]},{"food":{"foodId":"food_abs9nvxb46ayz3bb3f20xbq2fhis","label":"Cassava
+        Flour Tortillas","knownAs":"Cassava Flour Tortillas","nutrients":{"ENERC_KCAL":261.33479612453016,"PROCNT":0.19730316666433376,"FAT":13.73395675796672,"CHOCDF":36.47548197403083,"FIBTG":0.06882039118485399},"category":"Generic
+        meals","categoryLabel":"meal","foodContentsLabel":"cassava flour; fine sea
+        salt; water; coconut oil"},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_unit","label":"Whole","weight":73.41063985691922},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":73.41063985691922},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_milliliter","label":"Milliliter","weight":1.0}]},{"food":{"foodId":"food_bdb5tdibav4a5oaedr1iaacmlmyi","label":"Fresh
+        Flour Tortillas","knownAs":"Fresh Flour Tortillas","nutrients":{"ENERC_KCAL":286.22983162618715,"PROCNT":5.564300282894869,"FAT":10.744786729106155,"CHOCDF":41.08229801756806,"FIBTG":1.4717423168272574},"category":"Generic
+        meals","categoryLabel":"meal","foodContentsLabel":"flour; salt; shortening;
+        water; vegetable oil"},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_unit","label":"Whole","weight":88.75330504406641},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":88.75330504406641},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_milliliter","label":"Milliliter","weight":1.0}]}],"_links":{"next":{"title":"Next
+        page","href":"https://api.edamam.com/api/food-database/v2/parser?session=40&app_id=19297129&app_key=39891f8d61df2d5168fc473d049f28d3&ingr=%287+inch%29+flour+tortillas&nutrition-type=cooking"}}}'
+  recorded_at: Wed, 13 Dec 2023 19:50:49 GMT
+- request:
+    method: post
+    uri: https://api.edamam.com/api/food-database/v2/nutrients?app_id=19297129&app_key=39891f8d61df2d5168fc473d049f28d3
+    body:
+      encoding: UTF-8
+      string: '{"ingredients":[{"quantity":0,"measureURI":"http://www.edamam.com/ontologies/edamam.owl#Measure_unit","foodId":"food_a9ql6pdb639bs5b2nlvbob3w0mlj"}]}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Wed, 13 Dec 2023 19:50:52 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Served-By:
+      - ip-10-0-1-29.ec2.internal/10.0.1.29
+      Vary:
+      - accept-encoding
+      Strict-Transport-Security:
+      - max-age=15552001
+      X-Request-Id:
+      - 0fd21c6249a06e7fb2cf533f64f16fce
+    body:
+      encoding: ASCII-8BIT
+      string: '{"uri":"http://www.edamam.com/ontologies/edamam.owl#5ad7f1ed-26d7-4255-b987-e38ad02173de","calories":0,"totalWeight":0.0,"dietLabels":[],"healthLabels":["VEGAN","VEGETARIAN","PESCATARIAN","DAIRY_FREE","EGG_FREE","MILK_FREE","PEANUT_FREE","TREE_NUT_FREE","SOY_FREE","FISH_FREE","SHELLFISH_FREE","PORK_FREE","RED_MEAT_FREE","CRUSTACEAN_FREE","CELERY_FREE","MUSTARD_FREE","SESAME_FREE","LUPINE_FREE","MOLLUSK_FREE","ALCOHOL_FREE","KOSHER"],"cautions":["SULFITES"],"totalNutrients":{},"totalDaily":{},"ingredients":[{"parsed":[{"quantity":0.0,"measure":"whole","food":"flour
+        tortilla","foodId":"food_a9ql6pdb639bs5b2nlvbob3w0mlj","weight":0.0,"retainedWeight":0.0,"servingsPerContainer":9.877551020408163,"measureURI":"http://www.edamam.com/ontologies/edamam.owl#Measure_unit","status":"MISSING_QUANTITY"}]}]}'
+  recorded_at: Wed, 13 Dec 2023 19:50:52 GMT
+recorded_with: VCR 6.2.0

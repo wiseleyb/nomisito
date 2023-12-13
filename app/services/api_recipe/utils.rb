@@ -9,7 +9,7 @@ module ApiRecipe
         puts "HTTP GET: #{uri}"
 
         response = HTTParty.get(uri.to_s, headers:)
-        sleep pause.to_i if pause
+        delay(pause)
         response
       end
 
@@ -24,8 +24,14 @@ module ApiRecipe
         puts "Body: #{body}"
 
         response = HTTParty.post(uri.to_s, body:, headers:)
-        sleep pause.to_i if pause
+        delay(pause)
         response
+      end
+
+      # You can mock this out in specs to speed up initial run until
+      # cached by VCR: allow(ApiRecipe::Utils).to receive(:delay)
+      def delay(pause)
+        sleep pause.to_i if pause
       end
     end
   end

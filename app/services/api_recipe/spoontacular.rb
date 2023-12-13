@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# DEPRECATED
 # This isn't used... the api didn't work for finding dietary info on
 # ingredients. Keeping basics here in case I need to use this later on.
 module ApiRecipe

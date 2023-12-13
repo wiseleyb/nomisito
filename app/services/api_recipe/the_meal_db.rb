@@ -102,7 +102,7 @@ module ApiRecipe
       end
 
       def ingr_base
-        Ingredient.where(site_klass: 'ApiRecipe::TheMealDb')
+        Ingredient.where(site_klass: name)
       end
     end
   end
