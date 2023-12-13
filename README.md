@@ -67,5 +67,16 @@ Dietary.reset!
 
 ## Heroku
 
-git push heroku main
+url: https://nomisito-46f260c218eb.herokuapp.com/
+
 bundle lock --add-platform x86_64-linux
+git push heroku main
+add env keys to heroku
+heroku logs --tails
+heroku run rake db:migrate
+
+heroku run rails console
+ApiRecipe::GuacIsExtra.reset_cache!
+ApiRecipe::GuacIsExtra.cache_ingredients
+ApiRecipe::Edamam.fetch_all_dietary(site_klass: 'ApiRecipe::GuacIsExtra')
+Dietary.reset!

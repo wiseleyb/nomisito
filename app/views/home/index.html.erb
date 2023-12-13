@@ -1,36 +1,76 @@
 <style>
+  /* wraps entire site */
+  .main-body-div {
+    padding: 30px;
+  }
+  /* div surrounding select tables */
+  .selection-form-div {
+    height: 500px;
+    padding-right: 20px;
+    overflow-y: scroll;
+  }
   .form-select-table-td {
+    border: solid 2px black;
+    border-collapse: collapse;
+    border-spacing: 0;
     padding: 20px;
+  }
+  .ingredient-image-td {
+    text-align: center;
+    width: 50px;
   }
   .ingredient-image {
     height: 30px;
     width: 30px;
   }
-  .xingredient-table {
-    border: solid black 2px;
-    margin: 20px;
-    padding: 10px;
+  .ingredient-included-td, .ingredient-excluded-td {
+    text-align: center;
+    width: 70px;
+  }
+  .ingredient-included-td {
+    background-color: #80ff80;
+  }
+  .ingredient-excluded-td {
+    background-color: #ff8080;
+  }
+
+  .recipe-search-txt-box {
+    width: 450px;
+  }
+
+  /* div scroll bar hacks */
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
   }
 </style>
 
-<h1>Nomisito: Recipe Search</h1>
+<div class='main-body-div'>
+  <h1>Nomisito: Recipe Search</h1>
 
-<div>
-  <%= form_with url: '/', method: :get do |f| %>
-    <%= f.label :site_klass, 'Change Recipe DB:' %>
-    <%= select_tag :site_klass,
-      options_from_collection_for_select(RecipeDbs.klasses,
-                                         'klass',
-                                         'name',
-                                         session[:site_klass]) %>
-    <%= submit_tag 'Change' %>
-  <% end %>
+  <div>
+    <%= form_with url: '/', method: :get do |f| %>
+      <%= f.label :site_klass, 'Change Recipe DB:' %>
+      <%= select_tag :site_klass,
+        options_from_collection_for_select(RecipeDbs.klasses,
+                                           'klass',
+                                           'name',
+                                           session[:site_klass]) %>
+      <%= submit_tag 'Change' %>
+    <% end %>
+  </div>
+
+  <hr/>
+
+  <%= render partial: 'form' %>
+
+  <hr/>
+
+  <%= render partial: 'recipes', locals: { recipes: @recipes } %>
 </div>
-
-<hr/>
-
-<%= render partial: 'form' %>
-
-<hr?
-
-<%= render partial: 'recipes', locals: { recipes: @recipes } %>

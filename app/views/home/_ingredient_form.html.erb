@@ -1,19 +1,20 @@
 <table class='ingredient-table'>
   <tr>
+    <th>&nbsp;</th>
     <th>Ingredient</th>
-    <th>Must include</th>
-    <th>Must not include</th>
+    <th>include</th>
+    <th>exclude</th>
   </tr>
   <% Ingredient.where(site_klass: session[:site_klass]).order('name asc').each do |ingr| %>
     <tr>
-      <td><%= image_tag(ingr.edamam_img, class: 'ingredient-image') if ingr.edamam_img %></td>
+      <td class='ingredient-image-td'><%= image_tag(ingr.edamam_img, class: 'ingredient-image') if ingr.edamam_img %></td>
       <td><%= ingr.name %></td>
-      <td>
+      <td class='ingredient-included-td'>
         <%= check_box_tag 'included[]',
                           ingr.id,
                           Array(params[:included]).include?(ingr.id.to_s) %>
       </td>
-      <td>
+      <td class='ingredient-excluded-td'>
         <%= check_box_tag 'excluded[]',
                           ingr.id,
                           Array(params[:excluded]).include?(ingr.id.to_s) %>

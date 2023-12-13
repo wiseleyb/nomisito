@@ -104,6 +104,10 @@ module ApiRecipe
       def ingr_base
         Ingredient.where(site_klass: name)
       end
+
+      def text_input_hint
+        'must enter 1 character'
+      end
     end
   end
 end

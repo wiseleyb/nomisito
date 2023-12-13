@@ -1,5 +1,20 @@
 <% if @recipes %>
   <h3>Results: <%= @recipes.size %></h3>
+  <ul>
+    <li>
+      <b>Include Ingredients:</b>
+      <%= Ingredient.where(id: params[:included]).order('name asc').map(&:name).join(', ') %>
+    </li>
+    <li>
+      <b>Exclude Ingredients:</b>
+      <%= Ingredient.where(id: params[:excluded]).order('name asc').map(&:name).join(', ') %>
+    </li>
+    <li>
+      <b>Dietary Restrictions:</b>
+      <%= Dietary.where(id: params[:dietary]).order('name asc').map(&:name).map(&:titleize).join(', ') %>
+    </li>
+  </ul>
+  <hr/>
 
   <% @recipes.each do |recipe| %>
     <%= render partial: 'recipe', locals: { recipe: recipe } %>'

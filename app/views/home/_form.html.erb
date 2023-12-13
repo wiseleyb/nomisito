@@ -2,23 +2,28 @@
   <%= f.label :query, "Search by Recipe Name:" %>
   <%= text_field_tag :query,
     params[:query],
-    placeholder: 'leave blank to get all recipes' %>
+    placeholder: session[:site_klass].constantize.text_input_hint,
+    class: 'recipe-search-txt-box' %>
   <%= f.submit "Search" %>
   <br/>
   <table class='form-select-table'>
     <thead>
       <tr>
         <th>Ingredients</th>
-        <th>Dietary</th>
+        <th>Dietary Restrictions</th>
       </tr>
     </thead>
     <tbody>
       <tr valign=top>
         <td class='form-select-table-td'>
-          <%= render partial: 'ingredient_form' %>
+          <div class='selection-form-div'>
+            <%= render partial: 'ingredient_form' %>
+          </div>
         </td>
         <td class='form-select-table-td'>
-          <%= render partial: 'dietary_form' %>
+          <div class='selection-form-div'>
+            <%= render partial: 'dietary_form' %>
+          </div>
         </td>
       </tr>
     </tbody>
@@ -26,4 +31,3 @@
   <br/>
   <%= f.submit "Search" %>
 <% end %>
-<%= render partial: 'debug' %>

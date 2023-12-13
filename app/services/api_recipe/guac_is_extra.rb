@@ -105,6 +105,10 @@ module ApiRecipe
           ingr['preparation']
         ].compact.map(&:strip).delete_if(&:blank?).join(', ')
       end
+
+      def text_input_hint
+        'leave blank to find all recipes'
+      end
     end
   end
 end
