@@ -15,9 +15,22 @@
 
 <h1>Nomisito: Recipe Search</h1>
 
+<div>
+  <%= form_with url: '/', method: :get do |f| %>
+    <%= f.label :site_klass, 'Change Recipe DB:' %>
+    <%= select_tag :site_klass,
+      options_from_collection_for_select(RecipeDbs.klasses,
+                                         'klass',
+                                         'name',
+                                         session[:site_klass]) %>
+    <%= submit_tag 'Change' %>
+  <% end %>
+</div>
+
+<hr/>
+
 <%= render partial: 'form' %>
 
 <hr?
 
 <%= render partial: 'recipes', locals: { recipes: @recipes } %>
-

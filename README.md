@@ -61,6 +61,6 @@ rake setup:reset
 
 ApiRecipe::GuacIsExtra.reset_cache!
 ApiRecipe::GuacIsExtra.cache_ingredients
-ApiRecipe::Edamam.fetch_all_dietary
+ApiRecipe::Edamam.fetch_all_dietary(site_klass: 'ApiRecipe::GuacIsExtra')
 Dietary.reset!
 ```

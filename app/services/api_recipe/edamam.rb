@@ -3,8 +3,10 @@
 module ApiRecipe
   class Edamam
     class << self
-      def fetch_all_dietary
-        Ingredient.where(edamam_results: {}).find_each do |ing|
+      def fetch_all_dietary(site_klass: nil)
+        arel = Ingredient.where(edamam_results: {})
+        arel = arel.where(site_klass:) if site_klass
+        arel.find_each do |ing|
           fetch_data(ing.id)
         end
       end

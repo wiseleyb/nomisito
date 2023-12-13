@@ -4,6 +4,6 @@ class Ingredient < ApplicationRecord
   include IngredientEdamamHelper
 
   def dietary_restrictions
-    edamam_results['nutrients']['healthLabels'].compact
+    edamam_health_labels
   end
 end

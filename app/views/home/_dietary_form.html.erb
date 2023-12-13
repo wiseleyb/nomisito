@@ -5,7 +5,7 @@
     </tr>
   </thead>
   <tbody>
-    <% Dietary.all.order('name asc').each do |diet| %>
+    <% Dietary.where(site_klass: session[:site_klass]).order('name asc').each do |diet| %>
       <tr>
         <td>
           <%= check_box_tag 'dietary[]',

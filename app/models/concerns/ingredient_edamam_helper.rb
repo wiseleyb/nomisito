@@ -26,15 +26,20 @@ module IngredientEdamamHelper
 
   # measure uri used to look up nutrient info
   def edamam_measure_uri
-    edamam_hints.try(:[], 'measures')
-                .first
-                .try(:[], 'uri')
+    Array(edamam_hints.try(:[], 'measures'))
+      .first
+      .try(:[], 'uri')
   end
 
   def edamam_hints
-    edamam_results.try(:[], 'parse')
-                  .try(:[], 'hints')
-                  .first
+    Array(edamam_results.try(:[], 'parse')
+                         .try(:[], 'hints')).first
+  end
+
+  # gets what we call dietary_restrictions
+  def edamam_health_labels
+    Array(edamam_results.try(:[], 'nutrients')
+                        .try(:[], 'healthLabels')).compact
   end
 
   # hash used for dietary restrictions look up
