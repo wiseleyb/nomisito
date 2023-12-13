@@ -64,3 +64,8 @@ ApiRecipe::GuacIsExtra.cache_ingredients
 ApiRecipe::Edamam.fetch_all_dietary(site_klass: 'ApiRecipe::GuacIsExtra')
 Dietary.reset!
 ```
+
+## Heroku
+
+git push heroku main
+bundle lock --add-platform x86_64-linux
