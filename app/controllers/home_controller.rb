@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# Very basic site controller
 class HomeController < ApplicationController
+  # Very basic site search page
   def index
     session[:site_klass] = params[:site_klass] if params[:site_klass]
     session[:site_klass] ||= 'ApiRecipe::GuacIsExtra'

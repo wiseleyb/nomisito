@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
+# Basic data structure for all recipes
+#
+# When we download various API recipes we convert them to this for basic
+# filterting, UI display, etc.
 class Recipe
-  attr_accessor :name,
-                :ingredients,
-                :ingredients_desc,
-                :site_klass,
-                :steps
+  # @return [String] name of recipe
+  attr_accessor :name
+  # @return [Array(Ingredient)] ingredients in recipe
+  attr_accessor :ingredients
+  attr_accessor :ingredients_desc, :site_klass, :steps
 
   def initialize(name,
                  site_klass,

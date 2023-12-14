@@ -75,3 +75,12 @@ ApiRecipe::GuacIsExtra.reset_cache!
 ApiRecipe::GuacIsExtra.cache_ingredients
 ApiRecipe::Edamam.fetch_all_dietary(site_klass: 'ApiRecipe::GuacIsExtra')
 Dietary.reset!
+
+## Yard Documentation
+
+Cheat sheets:
+* https://gist.github.com/chetan/1827484
+* https://kapeli.com/cheat_sheets/Yard.docset/Contents/Resources/Documents/index
+
+Build yard docs: `yard`
+View docs: `yard server` then open https://localhost:8808

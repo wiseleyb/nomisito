@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 module ApiRecipe
-  class GuacIsExtra
+  class GuacIsExtra < ApiRecipe::RecipeApiBase
+    # Impelements GuacIsExta API
+    # API doc: https://github.com/madeintandem/guac-is-extra
     class << self
+      # Caches all ingredients in the db from the GuacIsExtra api and populates
+      # Ingredient[:name, :site_klass]
       def cache_ingredients
         fetch_ingredients.each do |ing|
           next if ing.to_s.strip.blank?
@@ -13,24 +17,7 @@ module ApiRecipe
         end
       end
 
-      def reset_cache!
-        ingr_base.destroy_all
-      end
-
-      # Scopes DB calls to ingredients to this class
-      def ingr_base
-        Ingredient.where(site_klass: name)
-      end
-
-      # Fetches ingredient list from all configured recipe urls
-      def fetch_ingredients
-        # TODO: This should accomodate bad data
-        data = fetch_all
-        data.map { |recipe| recipe['ingredients'] }
-            .map { |rec| rec.map { |ing| ing['name'] } }
-            .flatten.uniq.sort
-      end
-
+      # Downloads all recipes from GuacIsExtra API
       def fetch_all
         # TODO: While mostly for setup - IRL you should add retry logic
         #       here for http errors
@@ -38,12 +25,28 @@ module ApiRecipe
         ApiRecipe::Utils.http_get(url)
       end
 
-      # query: any string, example 'carne asada'
-      # ingredients_hash: a hash of true (include), false (exclude),
-      #   by ingerdient ids, example:
-      #   { 1: true, 3: false }
-      # dietary_restriction: array of dietary_id restrictions to exclude:
-      #  [1,4,9]
+      # Fetches ingredient list from API JSON data
+      def fetch_ingredients
+        data = fetch_all
+        data.map { |recipe| recipe['ingredients'] }
+            .map { |rec| rec.map { |ing| ing['name'] } }
+            .flatten.uniq.sort
+      end
+
+      # Performs a basic search of GuacIsExtra API
+      #
+      # @param [String, nil] query recipe name to filter on
+      # @param [Hash, nil] ingredient_options is a hash of
+      # ingredient_ids: [true/false] to include/exclude
+      # @param [Array, nil] dietary_restrictions is an array of
+      # dietary_ids to limit by
+      #
+      # @example
+      #   ApiRecipe::GuacIsExtra.search('chicken',
+      #                                 { 1: true, 2: false },
+      #                                 [ 1, 2])
+      #
+      # @return [Array] of populated Recipe objects
       def search(query,
                  ingredient_options: {},
                  dietary_restrictions: [])
@@ -71,6 +74,12 @@ module ApiRecipe
         recipes
       end
 
+      # Gets recipe-name search results from GuacIsExtra. This doesn't use the
+      # APIs ingredient include/exclude options because this is pretty
+      # inconsistent across various APIs and it was simpler to just do after
+      # search
+      #
+      # @param [String, nil] query recipe name to filter on
       def search_hash(query)
         uri = URI('https://guac-is-extra.herokuapp.com')
         params = { name: query }
@@ -78,7 +87,7 @@ module ApiRecipe
         ApiRecipe::Utils.http_get(uri)
       end
 
-      # DEPRECATED: This is inconsitent (AND vs OR) or not available in many
+      # @deprecated This is inconsitent (AND vs OR) or not available in many
       # apis... so we just ignore this API feature and do this post search.
       # You could optimize and do this via API but it'd add a lot of
       # compliexity. This also allows and/or options... for example it seems
@@ -100,6 +109,7 @@ module ApiRecipe
         params
       end
 
+      # Converts json ingredient details to a readable string
       def json_ingredient_to_desc(ingr)
         [
           ingr['quantity'],
@@ -108,10 +118,20 @@ module ApiRecipe
         ].compact.map(&:strip).delete_if(&:blank?).join(', ')
       end
 
+      # Hint text to display in UI for recipe-name search box
       def text_input_hint
         'leave blank to find all recipes'
       end
 
+      # Helper method for logging
+      #
+      # @param [String] method name of what's being logged
+      # @param [Hash, nil] data  hash of other params to log
+      #
+      # @example
+      #   ApiRecipe::GuacIsExtra.log('search', { query: 'chicken' })
+      #   Would log something like
+      #     source=ApiRecipe::GuacIsExtra method=search query=chicken
       def log(method, data = {})
         ApiRecipe::Utils.log(name, method, data)
       end

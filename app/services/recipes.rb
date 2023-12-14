@@ -2,11 +2,14 @@
 
 require 'net/http'
 
+# Utility class to manage loading/filter recipes
 class Recipes
   # NOTE: store as string to prevent initialization/caching issues
   RECIPE_KLASSES = %w[ApiRecipe::GuacIsExtra ApiRecipe::TheMealDb].freeze
 
   class << self
+    # If you're deploying or downloading for dev, this will initialize
+    # data from all recipe APIs. This can be slow
     def initial_setup!
       RECIPE_KLASSES.each do |rk|
         # load ingredients
@@ -32,9 +35,15 @@ class Recipes
       end
     end
 
+    # Filter recipes by included/excluded ingredients
+    #
     # While some APIs allow you to filter this in the API it's inconsitent
     # Some are OR, some are AND... for simplicity just ignore this and post
     # filter.
+    #
+    # @param [Array(Recipe)] recipes to analyze
+    # @param [Hash, nil] ingredient_options is a hash of
+    # ingredient_ids: [true/false] to include/exclude
     def filter_recipes_by_ingredients(recipes, ingredient_options)
       keep_ingredient_names =
         Ingredient.where(id: ingredient_options.select { |_k, v| v == true }
@@ -58,6 +67,11 @@ class Recipes
       end
     end
 
+    # Filter recipes by dietary restrictions
+    #
+    # @param [Array(Recipe)] recipes to analyze
+    # @param [Array, nil] dietary_restrictions is an array of
+    # dietary_ids to limit by
     def filter_by_dietary(recipes, dietary_restrictions)
       recipes.delete_if do |r|
         r.dietary_blocked?(dietary_restrictions)

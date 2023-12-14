@@ -1,10 +1,18 @@
 # frozen_string_literal: true
 
 module ApiRecipe
+  # Misc utils used in Api Recipe code
   class Utils
     class << self
-      # TODO: add standard time, retry logic
+      # Does a basic HTTP get
+      # @param [String] uri (or URI object) to get
+      # @param [Hash, nil] headers hash defaults to application/json
+      # @param [Integer, nil] pause amount of time to sleep for
+      # (this is for crude rate limiting)
+      #
+      # @return [Hash] standard return hash from HTTP
       def http_get(uri, headers: nil, pause: nil)
+        # TODO: add standard time, retry logic
         headers ||= { 'Accept' => 'application/json' }
 
         log(name,
@@ -20,8 +28,16 @@ module ApiRecipe
         response
       end
 
-      # TODO: add standard time, retry logic
+      # Does a basic HTTP post
+      # @param [String] uri (or URI object) to get
+      # @param [Hash, nil] headers hash - defaults to application/json
+      # @param [Hash] body optional the body to post
+      # @param [Integer, nil] pause amount of time to sleep for
+      # (this is for crude rate limiting)
+      #
+      # @return [Hash] standard return hash from HTTP
       def http_post(uri, headers: nil, body: {}, pause: nil)
+        # TODO: add standard time, retry logic
         headers ||= {
           'Accept' => 'application/json',
           'Content-Type' => 'application/json'
@@ -41,18 +57,31 @@ module ApiRecipe
         response
       end
 
+      # Adds a hacky rate-limiting option via sleep.
+      #
       # You can mock this out in specs to speed up initial run until
       # cached by VCR: allow(ApiRecipe::Utils).to receive(:delay)
-      # TODO: There are better ways to manage rate limiting... this is just a
-      #       quick hack. Like you should do these as fast as possible until a
-      #       pause is required. Easy problem to solve - over hte top for this.
+      #
+      # @param [Integer] pause sleep for {pause} seconds
       def delay(pause)
+        # TODO: There are better ways to manage rate limiting... this is just a
+        #       quick hack. Like you should do these as fast as possible until a
+        #       pause is required. Easy problem to solve - over hte top for this.
         sleep pause.to_i if pause
       end
 
-      # Centralize logging
-      # Format allows easy tailing/filter of logs
-      # Example log: "source=recipe method=search title=chicken"
+      # Helper method for logging
+      #
+      # @param [String] source name of class/source/lib
+      # @param [String] method name of what's being logged
+      # @param [Hash, nil] data  hash of other params to log
+      #
+      # @example
+      #   ApiRecipe::Utils.log('ApiRecipe::GuacIsExtra',
+      #                        'search',
+      #                        { query: 'chicken' })
+      #   Would log something like
+      #     source=ApiRecipe::GuacIsExtra method=search query=chicken
       def log(source, method, data = {})
         lstr = {
           source:,
@@ -67,6 +96,20 @@ module ApiRecipe
         lstr
       end
 
+      # Helper method for logging
+      #
+      # @param [String] source name of class/source/lib
+      # @param [String] method name of what's being logged
+      # @param [RuntimeError] err err object to log. Just logs err.message
+      # @param [Hash, nil] data hash of other params to log
+      #
+      # @example
+      #   ApiRecipe::Utils.log('ApiRecipe::GuacIsExtra',
+      #                        'search',
+      #                        RuntimeError.new('oops'),
+      #                        { query: 'bob' })
+      #   Would log something like
+      #     source=ApiRecipe::GuacIsExtra method=search query=bob error: oops
       def log_err(source, method, err, data = {})
         log(source, method, data.merge({ error: err.message }))
       end
