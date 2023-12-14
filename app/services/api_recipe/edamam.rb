@@ -12,13 +12,16 @@ module ApiRecipe
       end
 
       def fetch_data(ingredient_id)
-        puts ''
-        puts "Loading nutrition: #{ingredient_id}"
+        ApiRecipe::Utils.log(name,
+                             :fetch_data,
+                             { ingredient_id: })
         fetch_ingredient(ingredient_id)
         fetch_dietary(ingredient_id)
       rescue StandardError => e
-        puts "Error on ingredient_id: #{ingredient_id}"
-        puts e.message
+        ApiRecipe::Utils.log_err(name,
+                                 :fetch_data,
+                                 e,
+                                 { ingredient_id: })
       end
 
       def fetch_ingredient(ingredient_id)

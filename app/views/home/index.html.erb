@@ -9,6 +9,11 @@
     padding-right: 20px;
     overflow-y: scroll;
   }
+  .small-note {
+    font-size: small;
+    padding: 2px;
+    margin: 2px;
+  }
   .form-select-table-td {
     border: solid 2px black;
     border-collapse: collapse;
@@ -52,7 +57,7 @@
 </style>
 
 <div class='main-body-div'>
-  <h1>Nomisito: Recipe Search</h1>
+  <h1><%= link_to 'Nomisito: Recipe Search', root_path %></h1>
 
   <div>
     <%= form_with url: '/', method: :get do |f| %>

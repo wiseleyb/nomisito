@@ -39,17 +39,4 @@ class Recipe
   def allowed_dietary_restrictions
     ingredients.map(&:dietary_restrictions).reduce { |a, b| a & b }
   end
-
-  def debug
-    puts ''
-    puts '-' * 80
-    puts [
-      name,
-      site_klass,
-      "\nIngredients:",
-      ingredients_desc.join("\n"),
-      "\nSteps:",
-      steps.join("\n")
-    ].join("\n")
-  end
 end

@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - openresty
       Date:
-      - Wed, 13 Dec 2023 19:50:49 GMT
+      - Thu, 14 Dec 2023 20:31:50 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Transfer-Encoding:
@@ -33,13 +33,13 @@ http_interactions:
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       X-Served-By:
-      - ip-10-0-1-9.ec2.internal/10.0.1.9
+      - ip-10-0-1-29.ec2.internal/10.0.1.29
       Vary:
       - accept-encoding
       Strict-Transport-Security:
       - max-age=15552001
       X-Request-Id:
-      - 485e637e8bd32b43a93796a0e77969ff
+      - d0a008f28c38300efd0a9b8ee83b4a9a
     body:
       encoding: ASCII-8BIT
       string: '{"text":"(7 inch) flour tortillas","parsed":[{"food":{"foodId":"food_a9ql6pdb639bs5b2nlvbob3w0mlj","label":"Flour
@@ -115,7 +115,7 @@ http_interactions:
         meals","categoryLabel":"meal","foodContentsLabel":"flour; salt; shortening;
         water; vegetable oil"},"measures":[{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_unit","label":"Whole","weight":88.75330504406641},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_serving","label":"Serving","weight":88.75330504406641},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_gram","label":"Gram","weight":1.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_ounce","label":"Ounce","weight":28.349523125},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_pound","label":"Pound","weight":453.59237},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram","label":"Kilogram","weight":1000.0},{"uri":"http://www.edamam.com/ontologies/edamam.owl#Measure_milliliter","label":"Milliliter","weight":1.0}]}],"_links":{"next":{"title":"Next
         page","href":"https://api.edamam.com/api/food-database/v2/parser?session=40&app_id=19297129&app_key=39891f8d61df2d5168fc473d049f28d3&ingr=%287+inch%29+flour+tortillas&nutrition-type=cooking"}}}'
-  recorded_at: Wed, 13 Dec 2023 19:50:49 GMT
+  recorded_at: Thu, 14 Dec 2023 20:31:50 GMT
 - request:
     method: post
     uri: https://api.edamam.com/api/food-database/v2/nutrients?app_id=19297129&app_key=39891f8d61df2d5168fc473d049f28d3
@@ -139,7 +139,7 @@ http_interactions:
       Server:
       - openresty
       Date:
-      - Wed, 13 Dec 2023 19:50:52 GMT
+      - Thu, 14 Dec 2023 20:31:52 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Transfer-Encoding:
@@ -153,10 +153,10 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=15552001
       X-Request-Id:
-      - 0fd21c6249a06e7fb2cf533f64f16fce
+      - a9f9151868ba9ce3042c447a7eafd591
     body:
       encoding: ASCII-8BIT
-      string: '{"uri":"http://www.edamam.com/ontologies/edamam.owl#5ad7f1ed-26d7-4255-b987-e38ad02173de","calories":0,"totalWeight":0.0,"dietLabels":[],"healthLabels":["VEGAN","VEGETARIAN","PESCATARIAN","DAIRY_FREE","EGG_FREE","MILK_FREE","PEANUT_FREE","TREE_NUT_FREE","SOY_FREE","FISH_FREE","SHELLFISH_FREE","PORK_FREE","RED_MEAT_FREE","CRUSTACEAN_FREE","CELERY_FREE","MUSTARD_FREE","SESAME_FREE","LUPINE_FREE","MOLLUSK_FREE","ALCOHOL_FREE","KOSHER"],"cautions":["SULFITES"],"totalNutrients":{},"totalDaily":{},"ingredients":[{"parsed":[{"quantity":0.0,"measure":"whole","food":"flour
+      string: '{"uri":"http://www.edamam.com/ontologies/edamam.owl#2f0e86c8-5a42-4ed2-88e0-3b0a6c8e547b","calories":0,"totalWeight":0.0,"dietLabels":[],"healthLabels":["VEGAN","VEGETARIAN","PESCATARIAN","DAIRY_FREE","EGG_FREE","MILK_FREE","PEANUT_FREE","TREE_NUT_FREE","SOY_FREE","FISH_FREE","SHELLFISH_FREE","PORK_FREE","RED_MEAT_FREE","CRUSTACEAN_FREE","CELERY_FREE","MUSTARD_FREE","SESAME_FREE","LUPINE_FREE","MOLLUSK_FREE","ALCOHOL_FREE","KOSHER"],"cautions":["SULFITES"],"totalNutrients":{},"totalDaily":{},"ingredients":[{"parsed":[{"quantity":0.0,"measure":"whole","food":"flour
         tortilla","foodId":"food_a9ql6pdb639bs5b2nlvbob3w0mlj","weight":0.0,"retainedWeight":0.0,"servingsPerContainer":9.877551020408163,"measureURI":"http://www.edamam.com/ontologies/edamam.owl#Measure_unit","status":"MISSING_QUANTITY"}]}]}'
-  recorded_at: Wed, 13 Dec 2023 19:50:52 GMT
+  recorded_at: Thu, 14 Dec 2023 20:31:52 GMT
 recorded_with: VCR 6.2.0

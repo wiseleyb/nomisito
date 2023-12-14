@@ -10,7 +10,9 @@ module ApiRecipe
         fetch_ingredients.sort.each do |ing|
           next if ing.to_s.strip.blank?
 
-          puts "Adding: #{ing.downcase}"
+          ApiRecipe::Utils.log(name,
+                               :cache_ingredients,
+                               { adding: ing.downcase })
           ingr_base.where(name: ing.downcase).first_or_create
         end
       end
@@ -68,37 +70,10 @@ module ApiRecipe
           recipes << recipe
         end
 
-        # filter by dietary
-        recipes.delete_if do |r|
-          r.dietary_blocked?(dietary_restrictions)
-        end
-
-        filter_recipes_by_ingredients(recipes, ingredient_options)
+        Recipes.filter_recipes_by_ingredients(recipes, ingredient_options)
+        Recipes.filter_by_dietary(recipes, dietary_restrictions)
 
         recipes
-      end
-
-      def filter_recipes_by_ingredients(recipes, ingredient_options)
-        keep_ingredient_names =
-          Ingredient.where(id: ingredient_options.select { |_k, v| v == true }
-                                                 .keys)
-                    .map(&:name).map(&:downcase)
-        discard_ingredient_names =
-          Ingredient.where(id: ingredient_options.select { |_k, v| v == false }
-                                                 .keys)
-                    .map(&:name).map(&:downcase)
-
-        recipes.delete_if do |r|
-          ingredient_names = r.ingredients.map(&:name).map(&:downcase)
-          res =
-            # check for required ingredients
-            ((ingredient_names & keep_ingredient_names).size !=
-             keep_ingredient_names.size) ||
-            # check for blocked ingredients
-            (ingredient_names & discard_ingredient_names).size.positive?
-
-          res
-        end
       end
 
       def ingr_base

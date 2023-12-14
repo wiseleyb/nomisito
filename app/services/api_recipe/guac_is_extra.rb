@@ -7,7 +7,8 @@ module ApiRecipe
         fetch_ingredients.each do |ing|
           next if ing.to_s.strip.blank?
 
-          puts "Adding: #{ing.downcase}"
+          log('cache_ingredients', { action: %("Adding #{ing.downcase}") })
+
           ingr_base.where(name: ing.downcase).first_or_create
         end
       end
@@ -47,8 +48,7 @@ module ApiRecipe
                  ingredient_options: {},
                  dietary_restrictions: [])
         recipes = []
-        res = search_hash(query, ingredient_options:)
-
+        res = search_hash(query)
         res.each do |recipe|
           r = Recipe.new(recipe['name'], name)
           recipe['ingredients'].map do |ingr|
@@ -61,6 +61,8 @@ module ApiRecipe
           recipes << r
         end
 
+        Recipes.filter_recipes_by_ingredients(recipes, ingredient_options)
+        Recipes.filter_by_dietary(recipes, dietary_restrictions)
         # filter by dietary
         recipes.delete_if do |r|
           r.dietary_blocked?(dietary_restrictions)
@@ -69,13 +71,20 @@ module ApiRecipe
         recipes
       end
 
-      def search_hash(query,
-                      ingredient_options: {})
+      def search_hash(query)
         uri = URI('https://guac-is-extra.herokuapp.com')
-        params = {
-          name: query
-        }
+        params = { name: query }
+        uri.query = params.to_query
+        ApiRecipe::Utils.http_get(uri)
+      end
 
+      # DEPRECATED: This is inconsitent (AND vs OR) or not available in many
+      # apis... so we just ignore this API feature and do this post search.
+      # You could optimize and do this via API but it'd add a lot of
+      # compliexity. This also allows and/or options... for example it seems
+      # logical to want all excluded ingredients but maybe 1 or more included
+      # ingredients. Right now this is just AND
+      def filter_ingredients(params, ingredient_options: {})
         # process ingredients
         excluded = []
         included = []
@@ -88,14 +97,7 @@ module ApiRecipe
         excluded = excluded.map(&:strip).compact.join(',')
         params[:includeIngredients] = included unless included.blank?
         params[:excludeIngredients] = excluded unless excluded.blank?
-
-        uri.query = params.to_query
-
-        puts ''
-        puts "Requesting: #{uri}"
-
-        res = Net::HTTP.get_response(uri)
-        JSON.parse(res.body)
+        params
       end
 
       def json_ingredient_to_desc(ingr)
@@ -108,6 +110,10 @@ module ApiRecipe
 
       def text_input_hint
         'leave blank to find all recipes'
+      end
+
+      def log(method, data = {})
+        ApiRecipe::Utils.log(name, method, data)
       end
     end
   end
