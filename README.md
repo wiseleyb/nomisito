@@ -116,7 +116,7 @@ GuacIsExtra doesn't have images, while TheMealDb does... that's a pretty
 different UI experience. 
 
 In either case, I don't think this works as a real-time API call solution. I
-would approach this by caching data and running download load jobs behind the
+would approach this by caching data and running download jobs behind the
 scenes. This makes the most sense to me as a full-text search problem give the
 nearly infinite number of ingredients (and variations). 
 
@@ -136,8 +136,8 @@ My general approach would be:
 ingredients, steps, etc. Sites like Edamam do a good job of giving you
 calories, dietary restrictions, etc for ingredients. Doing this manually probably
 isn't realistic given something like 200,000+ ingredients. Using this approach would
-allow you do use very simple data as well, like my terrible 
-[recipe site](https://github.com/wiseleyb/recipe-files) and have that work just
+allow you to use very simple data as well, like my terrible 
+[recipe site](https://github.com/wiseleyb/recipe-files), and have that work just
 as well as API Recipe sites.
 * Leverage something like ElasticSearch to support full-text search. In a pinch
   you could do this in Postgres - but it's slow and not great. A Large Language
