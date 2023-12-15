@@ -16,7 +16,7 @@ class Recipe
                  ingredients: [],
                  ingredient_desc: [],
                  steps: [])
-    @name = name
+    @name = name.strip
     @site_klass = site_klass
     @ingredients = Array(ingredients).compact
     @ingredients_desc = Array(ingredient_desc).compact

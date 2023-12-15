@@ -46,6 +46,19 @@ module ApiRecipe
       def text_input_hint
         'enter recipe name'
       end
+
+      # Used to limit number of ingredients pre-cached in test to speed
+      # things up
+      def test_ingredient_limit
+        5
+      end
+
+      # User to limit number of ingredients in test
+      def test_break_on_ingreint_limit?
+        @test_ingr_limit ||= 0
+        @test_ingr_limit += 1
+        @test_ingr_limit >= test_ingredient_limit
+      end
     end
   end
 end

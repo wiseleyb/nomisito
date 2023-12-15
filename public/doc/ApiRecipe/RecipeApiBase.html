@@ -228,6 +228,54 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#test_break_on_ingreint_limit%3F-class_method" title="test_break_on_ingreint_limit? (class method)">.<strong>test_break_on_ingreint_limit?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>User to limit number of ingredients in test.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_ingredient_limit-class_method" title="test_ingredient_limit (class method)">.<strong>test_ingredient_limit</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Used to limit number of ingredients pre-cached in test to speed things up.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#text_input_hint-class_method" title="text_input_hint (class method)">.<strong>text_input_hint</strong>  &#x21d2; Object </a>
     
 
@@ -513,6 +561,105 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="test_break_on_ingreint_limit?-class_method">
+  
+    .<strong>test_break_on_ingreint_limit?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>User to limit number of ingredients in test</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/recipe_api_base.rb', line 57</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_test_break_on_ingreint_limit?'>test_break_on_ingreint_limit?</span>
+  <span class='ivar'>@test_ingr_limit</span> <span class='op'>||=</span> <span class='int'>0</span>
+  <span class='ivar'>@test_ingr_limit</span> <span class='op'>+=</span> <span class='int'>1</span>
+  <span class='ivar'>@test_ingr_limit</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_test_ingredient_limit'>test_ingredient_limit</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="test_ingredient_limit-class_method">
+  
+    .<strong>test_ingredient_limit</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Used to limit number of ingredients pre-cached in test to speed things up</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/recipe_api_base.rb', line 52</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_test_ingredient_limit'>test_ingredient_limit</span>
+  <span class='int'>5</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="text_input_hint-class_method">
   
     .<strong>text_input_hint</strong>  &#x21d2; <tt>Object</tt> 
@@ -558,7 +705,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Dec 15 06:28:50 2023 by
+  Generated on Fri Dec 15 09:44:21 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>

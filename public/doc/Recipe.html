@@ -389,7 +389,7 @@
                <span class='label'>ingredients:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span>
                <span class='label'>ingredient_desc:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span>
                <span class='label'>steps:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
   <span class='ivar'>@site_klass</span> <span class='op'>=</span> <span class='id identifier rubyid_site_klass'>site_klass</span>
   <span class='ivar'>@ingredients</span> <span class='op'>=</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_ingredients'>ingredients</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>
   <span class='ivar'>@ingredients_desc</span> <span class='op'>=</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_ingredient_desc'>ingredient_desc</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>
@@ -776,7 +776,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Dec 15 06:28:49 2023 by
+  Generated on Fri Dec 15 09:44:21 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>

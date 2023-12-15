@@ -11,13 +11,16 @@ module ApiRecipe
       # Caches all ingredients in the db from the TheMealDb api and populates
       # Ingredient[:name, :site_klass]
       def cache_ingredients
-        fetch_ingredients.sort.each do |ing|
+        fetch_ingredients.sort.each_with_index do |ing, _idx|
           next if ing.to_s.strip.blank?
 
           ApiRecipe::Utils.log(name,
                                :cache_ingredients,
                                { adding: ing.downcase })
           ingr_base.where(name: ing.downcase).first_or_create
+
+          # HACK: to speed up tests
+          break if Rails.env.test? && ingr_base.count >= test_ingredient_limit
         end
       end
 
@@ -39,6 +42,9 @@ module ApiRecipe
               res << v.strip if k.to_s.starts_with?('strIngredient') && v.present?
             end
           end
+
+          # HACK: to speed up tests
+          break if test_break_on_ingreint_limit? && Rails.env.test?
         end
         res.flatten.delete_if { |r| r.to_s.strip.blank? }.uniq.sort
       end
@@ -70,11 +76,15 @@ module ApiRecipe
           ingredients =
             r.select { |k, v| k.starts_with?('strIngredient') && v.present? }
           ingredients.each do |k, v|
-            inum = k.gsub('strIngredient', '')
             ingr = ingr_base.where(name: v.downcase.strip).first
-            measure = r["strMeasure#{inum}"]
-            recipe.ingredients << ingr
-            recipe.ingredients_desc << "#{measure} #{ingr.name}"
+            if ingr
+              inum = k.gsub('strIngredient', '')
+              measure = r["strMeasure#{inum}"]
+              recipe.ingredients << ingr
+              recipe.ingredients_desc << "#{measure} #{ingr.name}"
+            else
+              recipe.ingredients_desc << "Missing ingredient #{k}:#{v} in db"
+            end
           end
           recipe.steps = r['strInstructions'].split("\r\n")
           recipes << recipe

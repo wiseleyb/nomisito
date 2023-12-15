@@ -2,6 +2,10 @@
   <h3>Results: <%= @recipes.size %></h3>
   <ul>
     <li>
+      <b>Recipe Name:</b>
+      <%= params[:query] %>
+    </li>
+    <li>
       <b>Include Ingredients:</b>
       <%= Ingredient.where(id: params[:included]).order('name asc').map(&:name).join(', ') %>
     </li>

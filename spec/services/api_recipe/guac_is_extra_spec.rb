@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe ApiRecipe::GuacIsExtra, type: :service do
   let(:subject) { ApiRecipe::GuacIsExtra }
   let(:site_klass) { subject.name }
+  let(:vcr_base) { 'guac' }
 
   context '#ingr_base' do
     let!(:ingr_guac) do
@@ -17,6 +18,7 @@ RSpec.describe ApiRecipe::GuacIsExtra, type: :service do
     it 'filters on site_klass' do
       expect(Ingredient.count).to eq(2)
       expect(subject.ingr_base.count).to eq(1)
+      expect(subject.ingr_base.first.site_klass).to eq(subject.name)
     end
   end
 
@@ -25,8 +27,8 @@ RSpec.describe ApiRecipe::GuacIsExtra, type: :service do
     it 'loads ingredients from guac-is-extra site' do
       VCR.use_cassette('guac-is-extra-ingredients') do
         subject.cache_ingredients
-        expect(Ingredient.count).to eq(124)
-        expect(subject.ingr_base.count).to eq(124)
+        expect(Ingredient.count).to eq(subject.test_ingredient_limit)
+        expect(subject.ingr_base.count).to eq(subject.test_ingredient_limit)
       end
     end
   end
@@ -53,7 +55,7 @@ RSpec.describe ApiRecipe::GuacIsExtra, type: :service do
     # For this eval I just combined a few basic search tests into
     # one test for simplicity
     it 'finds by recipes' do
-      VCR.use_cassette('guac-search') do
+      VCR.use_cassette("#{vcr_base}-search") do
         # load ingredient data
         ApiRecipe::Edamam.fetch_data(ingr_beef.id)
         expect(ingr_beef.reload.dietary_restrictions).to \

@@ -158,7 +158,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Downloads all recipes from GuacIsExtra API.</p>
+<p>Downloads all recipes from GuacIsExtra API TODO: IRL you’d handle paging here.</p>
 </div></span>
   
 </li>
@@ -345,7 +345,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="RecipeApiBase.html" title="ApiRecipe::RecipeApiBase (class)">RecipeApiBase</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="RecipeApiBase.html#ingr_base-class_method" title="ApiRecipe::RecipeApiBase.ingr_base (method)">ingr_base</a></span>, <span class='object_link'><a href="RecipeApiBase.html#reset_cache!-class_method" title="ApiRecipe::RecipeApiBase.reset_cache! (method)">reset_cache!</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="RecipeApiBase.html#ingr_base-class_method" title="ApiRecipe::RecipeApiBase.ingr_base (method)">ingr_base</a></span>, <span class='object_link'><a href="RecipeApiBase.html#reset_cache!-class_method" title="ApiRecipe::RecipeApiBase.reset_cache! (method)">reset_cache!</a></span>, <span class='object_link'><a href="RecipeApiBase.html#test_break_on_ingreint_limit%3F-class_method" title="ApiRecipe::RecipeApiBase.test_break_on_ingreint_limit? (method)">test_break_on_ingreint_limit?</a></span>, <span class='object_link'><a href="RecipeApiBase.html#test_ingredient_limit-class_method" title="ApiRecipe::RecipeApiBase.test_ingredient_limit (method)">test_ingredient_limit</a></span></p>
 
 
   <div id="class_method_details" class="method_details_list">
@@ -386,7 +386,10 @@
 15
 16
 17
-18</pre>
+18
+19
+20
+21</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 10</span>
@@ -398,6 +401,9 @@
     <span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cache_ingredients</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&quot;Adding </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ing'>ing</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>)</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 
     <span class='id identifier rubyid_ingr_base'>ingr_base</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_ing'>ing</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first_or_create'>first_or_create</span>
+
+    <span class='comment'># HACK: to speed up tests
+</span>    <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_test_break_on_ingreint_limit?'>test_break_on_ingreint_limit?</span> <span class='op'>&amp;&amp;</span> <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_test?'>test?</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -417,7 +423,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Downloads all recipes from GuacIsExtra API</p>
+<p>Downloads all recipes from GuacIsExtra API TODO: IRL you’d handle paging here</p>
 
 
   </div>
@@ -431,15 +437,15 @@
       <pre class="lines">
 
 
-21
-22
-23
-24
 25
-26</pre>
+26
+27
+28
+29
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fetch_all'>fetch_all</span>
   <span class='comment'># TODO: While mostly for setup - IRL you should add retry logic
@@ -478,15 +484,15 @@
       <pre class="lines">
 
 
-29
-30
-31
-32
 33
-34</pre>
+34
+35
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fetch_ingredients'>fetch_ingredients</span>
   <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='id identifier rubyid_fetch_all'>fetch_all</span>
@@ -528,10 +534,6 @@
       <pre class="lines">
 
 
-96
-97
-98
-99
 100
 101
 102
@@ -542,10 +544,14 @@
 107
 108
 109
-110</pre>
+110
+111
+112
+113
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 96</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 100</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_filter_ingredients'>filter_ingredients</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='label'>ingredient_options:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='comment'># process ingredients
@@ -593,16 +599,16 @@
       <pre class="lines">
 
 
-113
-114
-115
-116
 117
 118
-119</pre>
+119
+120
+121
+122
+123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_json_ingredient_to_desc'>json_ingredient_to_desc</span><span class='lparen'>(</span><span class='id identifier rubyid_ingr'>ingr</span><span class='rparen'>)</span>
   <span class='lbracket'>[</span>
@@ -690,12 +696,12 @@ Would log something like
       <pre class="lines">
 
 
-135
-136
-137</pre>
+139
+140
+141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 139</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../ApiRecipe.html" title="ApiRecipe (module)">ApiRecipe</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Utils.html" title="ApiRecipe::Utils (class)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="Utils.html#log-class_method" title="ApiRecipe::Utils.log (method)">log</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
@@ -817,10 +823,6 @@ Would log something like
       <pre class="lines">
 
 
-50
-51
-52
-53
 54
 55
 56
@@ -842,10 +844,14 @@ Would log something like
 72
 73
 74
-75</pre>
+75
+76
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='comma'>,</span>
            <span class='label'>ingredient_options:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
@@ -924,15 +930,15 @@ Would log something like
       <pre class="lines">
 
 
-83
-84
-85
-86
 87
-88</pre>
+88
+89
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_search_hash'>search_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='const'>URI</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://guac-is-extra.herokuapp.com</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -971,12 +977,12 @@ Would log something like
       <pre class="lines">
 
 
-122
-123
-124</pre>
+126
+127
+128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_text_input_hint'>text_input_hint</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leave blank to find all recipes</span><span class='tstring_end'>&#39;</span></span>
@@ -991,7 +997,7 @@ Would log something like
 </div>
 
       <div id="footer">
-  Generated on Fri Dec 15 06:28:49 2023 by
+  Generated on Fri Dec 15 09:44:21 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>

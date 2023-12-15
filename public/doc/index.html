@@ -103,18 +103,43 @@
 
 <h2 id="label-Setup">Setup</h2>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='label'>db:</span><span class='id identifier rubyid_create'>create</span>
-<span class='id identifier rubyid_rake'>rake</span> <span class='label'>db:</span><span class='id identifier rubyid_migrate'>migrate</span>
-<span class='id identifier rubyid_rake'>rake</span> <span class='label'>setup:</span><span class='id identifier rubyid_reset'>reset</span>
+<h3 id="label-Setup+without+docker">Setup without docker</h3>
+
+<p>This assumes you have postgres installed in running… this can be a hassle. It might be easier to setup via docker.</p>
+
+<pre class="code ruby"><code class="ruby">git co https://github.com/wiseleyb/nomisito/
+cd nomisito
+bundle install
+rake db:create db:migrate db:seed
+
+# You can also populate the data from the actual APIs... this is pretty
+# slow do to rate limiting.
+# rake setup:reset
+
+open http://localhost:3000/
 </code></pre>
+
+<h3 id="label-Setup+with+Docker">Setup with Docker</h3>
+
+<p>Get <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a></p>
+
+<p><a href="https://gist.github.com/wiseleyb/e12fd7686274457e4fb69b491ee45329">Add aliases</a></p>
+
+<pre class="code ruby"><code class="ruby">dcbuild
+dcrake db:create db:migrate db:seed
+dcrake db:create RAILS_ENV=test
+dcup
+</code></pre>
+
+<p><a href="http://0.0.0.0:3000/">open http://0.0.0.0:3000/</a></p>
+
+<p>Run specs <code>dcrspec</code> Run rubocop <code>dccop</code> Run rails console <code>dccon</code> Run postgres console <code>dcpsql</code></p>
 
 <h2 id="label-Heroku">Heroku</h2>
 
 <p>url: <a href="https://nomisito-46f260c218eb.herokuapp.com">nomisito-46f260c218eb.herokuapp.com</a>/</p>
 
 <p>bundle lock –add-platform x86_64-linux git push heroku main add env keys to heroku heroku logs –tails heroku run rake db:migrate</p>
-
-<p>heroku run rails console ApiRecipe::GuacIsExtra.reset_cache! ApiRecipe::GuacIsExtra.cache_ingredients ApiRecipe::Edamam.fetch_all_dietary(site_klass: ‘ApiRecipe::GuacIsExtra’) Dietary.reset!</p>
 
 <h2 id="label-Yard+Documentation">Yard Documentation</h2>
 
@@ -128,7 +153,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Fri Dec 15 06:28:49 2023 by
+  Generated on Fri Dec 15 09:44:21 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>

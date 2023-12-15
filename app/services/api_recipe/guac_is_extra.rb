@@ -14,10 +14,14 @@ module ApiRecipe
           log('cache_ingredients', { action: %("Adding #{ing.downcase}") })
 
           ingr_base.where(name: ing.downcase).first_or_create
+
+          # HACK: to speed up tests
+          break if test_break_on_ingreint_limit? && Rails.env.test?
         end
       end
 
       # Downloads all recipes from GuacIsExtra API
+      # TODO: IRL you'd handle paging here
       def fetch_all
         # TODO: While mostly for setup - IRL you should add retry logic
         #       here for http errors

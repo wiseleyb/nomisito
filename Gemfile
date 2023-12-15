@@ -64,7 +64,7 @@ gem 'yard'
 # Since this site relies on tons of api calls that are rate limited this is
 # a faster way to get started
 # bundle exec rake db:seed:dump
-# then reload 
+# then reload
 # bundle exec rake db:seed (this will drop all ingredients and dietary rows)
 gem 'seed_dump'
 
