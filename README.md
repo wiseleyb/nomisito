@@ -78,9 +78,14 @@ Dietary.reset!
 
 ## Yard Documentation
 
+Put yard doc in public to easily view on live site
+`echo --output-dir public/doc >> .yardopts`
+
 Cheat sheets:
 * https://gist.github.com/chetan/1827484
 * https://kapeli.com/cheat_sheets/Yard.docset/Contents/Resources/Documents/index
 
 Build yard docs: `yard`
 View docs: `yard server` then open https://localhost:8808
+
+[Live on Heroku Docs](https://nomisito-46f260c218eb.herokuapp.com/doc/index.html)

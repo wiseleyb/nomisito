@@ -59,6 +59,11 @@
 <div class='main-body-div'>
   <h1><%= link_to 'Nomisito: Recipe Search', root_path %></h1>
 
+  <p><%= link_to 'Yardoc Code Documentation',
+    '/doc/index.html', target: '_yard' %></p>
+
+  <hr/>
+
   <div>
     <%= form_with url: '/', method: :get do |f| %>
       <%= f.label :site_klass, 'Change Recipe DB:' %>

@@ -204,7 +204,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#search-class_method" title="search (class method)">.<strong>search</strong>(query, ingredient_options: {}, dietary_restrictions: [])  &#x21d2; Array </a>
+      <a href="#search-class_method" title="search (class method)">.<strong>search</strong>(_query, _ingredient_options: {}, _dietary_restrictions: [])  &#x21d2; Array </a>
     
 
     
@@ -384,7 +384,7 @@
       <div class="method_details ">
   <h3 class="signature " id="search-class_method">
   
-    .<strong>search</strong>(query, ingredient_options: {}, dietary_restrictions: [])  &#x21d2; <tt>Array</tt> 
+    .<strong>search</strong>(_query, _ingredient_options: {}, _dietary_restrictions: [])  &#x21d2; <tt>Array</tt> 
   
 
   
@@ -416,7 +416,7 @@
   
     <li>
       
-        <span class='name'>query</span>
+        <span class='name'>_query</span>
       
       
         <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
@@ -432,7 +432,7 @@
   
     <li>
       
-        <span class='name'>ingredient_options</span>
+        <span class='name'>_ingredient_options</span>
       
       
         <span class='type'>(<tt>Hash</tt>, <tt>nil</tt>)</span>
@@ -450,7 +450,7 @@
   
     <li>
       
-        <span class='name'>dietary_restrictions</span>
+        <span class='name'>_dietary_restrictions</span>
       
       
         <span class='type'>(<tt>Array</tt>, <tt>nil</tt>)</span>
@@ -502,9 +502,9 @@
     <td>
       <pre class="code"><span class="info file"># File 'app/services/api_recipe/recipe_api_base.rb', line 28</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='comma'>,</span>
-           <span class='label'>ingredient_options:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
-           <span class='label'>dietary_restrictions:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid__query'>_query</span><span class='comma'>,</span>
+           <span class='label'>_ingredient_options:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+           <span class='label'>_dietary_restrictions:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Class must implement</span><span class='tstring_end'>&#39;</span></span>
 <span class='kw'>end</span></pre>
     </td>
@@ -558,7 +558,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec 14 15:05:57 2023 by
+  Generated on Fri Dec 15 06:28:50 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>

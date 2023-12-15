@@ -369,6 +369,8 @@
       <pre class="lines">
 
 
+14
+15
 16
 17
 18
@@ -377,12 +379,10 @@
 21
 22
 23
-24
-25
-26</pre>
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/recipe.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'app/services/recipe.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span>
                <span class='id identifier rubyid_site_klass'>site_klass</span><span class='comma'>,</span>
@@ -598,12 +598,12 @@
       <pre class="lines">
 
 
+12
 13
-14
-15</pre>
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/recipe.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'app/services/recipe.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_site_klass'>site_klass</span>
   <span class='ivar'>@site_klass</span>
@@ -641,12 +641,12 @@
       <pre class="lines">
 
 
-14
-15
-16</pre>
+12
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/recipe.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'app/services/recipe.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_steps'>steps</span>
   <span class='ivar'>@steps</span>
@@ -678,12 +678,12 @@
       <pre class="lines">
 
 
-45
-46
-47</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/recipe.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'app/services/recipe.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_allowed_dietary_restrictions'>allowed_dietary_restrictions</span>
   <span class='id identifier rubyid_ingredients'>ingredients</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:dietary_restrictions</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_reduce'>reduce</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='op'>|</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>&amp;</span> <span class='id identifier rubyid_b'>b</span> <span class='rbrace'>}</span>
@@ -730,6 +730,8 @@
       <pre class="lines">
 
 
+26
+27
 28
 29
 30
@@ -743,12 +745,10 @@
 38
 39
 40
-41
-42
-43</pre>
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/recipe.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'app/services/recipe.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dietary_blocked?'>dietary_blocked?</span><span class='lparen'>(</span><span class='id identifier rubyid_dietary_restrictions'>dietary_restrictions</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_restrictions'>restrictions</span> <span class='op'>=</span>
@@ -776,7 +776,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec 14 15:05:57 2023 by
+  Generated on Fri Dec 15 06:28:49 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>

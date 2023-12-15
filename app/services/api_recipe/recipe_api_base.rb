@@ -14,10 +14,10 @@ module ApiRecipe
 
       # Should implement search of the recipe API
       #
-      # @param [String, nil] query recipe name to filter on
-      # @param [Hash, nil] ingredient_options is a hash of
+      # @param [String, nil] _query recipe name to filter on
+      # @param [Hash, nil] _ingredient_options is a hash of
       # ingredient_ids: [true/false] to include/exclude
-      # @param [Array, nil] dietary_restrictions is an array of
+      # @param [Array, nil] _dietary_restrictions is an array of
       # dietary_ids to limit by
       #
       # @example

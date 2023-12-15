@@ -62,7 +62,7 @@ module ApiRecipe
       # You can mock this out in specs to speed up initial run until
       # cached by VCR: allow(ApiRecipe::Utils).to receive(:delay)
       #
-      # @param [Integer] pause sleep for {pause} seconds
+      # @param [Integer] pause sleep for pause seconds
       def delay(pause)
         # TODO: There are better ways to manage rate limiting... this is just a
         #       quick hack. Like you should do these as fast as possible until a
