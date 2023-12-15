@@ -54,6 +54,11 @@ explain why you chose the API you're using.
 
 ## Setup
 
+### Setup without docker
+
+This assumes you have postgres installed in running... this can be a hassle. It
+might be easier to setup via docker.
+
 ```
 git co https://github.com/wiseleyb/nomisito/
 cd nomisito
@@ -67,6 +72,25 @@ rake db:create db:migrate db:seed
 open http://localhost:3000/
 ```
 
+### Setup with Docker
+
+Get [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+[Add aliases](https://gist.github.com/wiseleyb/e12fd7686274457e4fb69b491ee45329)
+
+```
+dcbuild
+dcrake db:create db:migrate db:seed
+dcrake db:create RAILS_ENV=test
+dcup
+```
+[open http://0.0.0.0:3000/](http://0.0.0.0:3000/)
+
+Run specs `dcrspec`
+Run rubocop `dccop`
+Run rails console `dccon`
+Run postgres console `dcpsql`
+
 ## Heroku
 
 url: https://nomisito-46f260c218eb.herokuapp.com/
@@ -76,12 +100,6 @@ git push heroku main
 add env keys to heroku
 heroku logs --tails
 heroku run rake db:migrate
-
-heroku run rails console
-ApiRecipe::GuacIsExtra.reset_cache!
-ApiRecipe::GuacIsExtra.cache_ingredients
-ApiRecipe::Edamam.fetch_all_dietary(site_klass: 'ApiRecipe::GuacIsExtra')
-Dietary.reset!
 
 ## Yard Documentation
 
@@ -96,3 +114,4 @@ Build yard docs: `yard`
 View docs: `yard server` then open https://localhost:8808
 
 [Live on Heroku Docs](https://nomisito-46f260c218eb.herokuapp.com/doc/index.html)
+

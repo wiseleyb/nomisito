@@ -1,0 +1,36 @@
+version: '3.9'
+services:
+  db:
+    build: ./docker/postgres
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=nomisito
+      - POSTGRES_PASSWORD=changeme
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
+  web:
+    build: .
+    command: "bundle exec rails s -p 3000 -b '0.0.0.0'"
+    image: rails-on-docker:1.3.0
+    stdin_open: true
+    tty: true
+    environment:
+      - DATABASE_URL=postgres://postgres:changeme@db
+      - BOOTSNAP_CACHE_DIR=/usr/local/bundle/_bootsnap
+      - HISTFILE=/usr/src/app/.dockerdev/.bash_history
+      - MALLOC_ARENA_MAX=2
+    volumes:
+      - .:/usr/src/app/:cached
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+volumes:
+  bundle:
+  db_data:
