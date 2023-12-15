@@ -42,9 +42,11 @@ class Recipes
     # filter.
     #
     # @param [Array(Recipe)] recipes to analyze
-    # @param [Hash, nil] ingredient_options is a hash of
+    # @param [Hash] ingredient_options is a hash of
     # ingredient_ids: [true/false] to include/exclude
-    def filter_recipes_by_ingredients(recipes, ingredient_options)
+    # @param [Hash] and_or decides bit logic for search
+    # included: 'AND/OR', excluded: 'AND/OR'
+    def filter_recipes_by_ingredients(recipes, ingredient_options, and_or)
       keep_ingredient_names =
         Ingredient.where(id: ingredient_options.select { |_k, v| v == true }
                                                .keys)
@@ -54,16 +56,60 @@ class Recipes
                                                .keys)
                   .map(&:name).map(&:downcase)
 
-      recipes.delete_if do |r|
-        ingredient_names = r.ingredients.map(&:name).map(&:downcase)
-        res =
-          # check for required ingredients
-          ((ingredient_names & keep_ingredient_names).size !=
-           keep_ingredient_names.size) ||
-          # check for blocked ingredients
-          (ingredient_names & discard_ingredient_names).size.positive?
 
-        res
+      if and_or['included'] == 'AND'
+        filter_included_by_and(recipes, keep_ingredient_names)
+      else
+        filter_included_by_or(recipes, keep_ingredient_names)
+      end
+
+      if and_or['excluded'] == 'AND'
+        filter_excluded_by_and(recipes, discard_ingredient_names)
+      else
+        filter_excluded_by_or(recipes, discard_ingredient_names)
+      end
+
+      recipes.keep_if do |r|
+        r.ingredients_included_ok && r.ingredients_excluded_ok
+      end
+
+      recipes
+    end
+
+    def filter_included_by_and(recipes, keep_ingredient_names)
+      debugger
+      recipes.each do |r|
+        ingredient_names = r.ingredients.map(&:name).map(&:downcase)
+        res = (ingredient_names & keep_ingredient_names).size !=
+                keep_ingredient_names.size
+        r.ingredients_included_ok = res
+      end
+    end
+
+    def filter_included_by_or(recipes, keep_ingredient_names)
+      debugger
+      recipes.each do |r|
+        ingredient_names = r.ingredients.map(&:name).map(&:downcase)
+        r.ingredients_included_ok =
+          (ingredient_names & keep_ingredient_names).size > 0
+      end
+    end
+
+    # Excluding by AND doesn't make much sense - but, support it
+    def filter_excluded_by_and(recipes, discard_ingredient_names)
+      recipes.each do |r|
+        ingredient_names = r.ingredients.map(&:name).map(&:downcase)
+        r.ingredients_included_ok =
+          (ingredient_names & discard_ingredient_names).size ==
+            discard_ingredient_names.size
+      end
+    end
+
+    def filter_excluded_by_or(recipes, discard_ingredient_names)
+      recipes.each do |r|
+        ingredient_names = r.ingredients.map(&:name).map(&:downcase)
+        r.ingredients_included_ok =
+          (ingredient_names & discard_ingredient_names).size > 0
       end
     end
 

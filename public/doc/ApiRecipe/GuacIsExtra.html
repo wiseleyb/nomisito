@@ -534,6 +534,13 @@
       <pre class="lines">
 
 
+93
+94
+95
+96
+97
+98
+99
 100
 101
 102
@@ -541,17 +548,10 @@
 104
 105
 106
-107
-108
-109
-110
-111
-112
-113
-114</pre>
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_filter_ingredients'>filter_ingredients</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='label'>ingredient_options:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='comment'># process ingredients
@@ -599,16 +599,16 @@
       <pre class="lines">
 
 
-117
-118
-119
-120
-121
-122
-123</pre>
+110
+111
+112
+113
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_json_ingredient_to_desc'>json_ingredient_to_desc</span><span class='lparen'>(</span><span class='id identifier rubyid_ingr'>ingr</span><span class='rparen'>)</span>
   <span class='lbracket'>[</span>
@@ -696,12 +696,12 @@ Would log something like
       <pre class="lines">
 
 
-139
-140
-141</pre>
+132
+133
+134</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 139</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 132</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../ApiRecipe.html" title="ApiRecipe (module)">ApiRecipe</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Utils.html" title="ApiRecipe::Utils (class)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log'><span class='object_link'><a href="Utils.html#log-class_method" title="ApiRecipe::Utils.log (method)">log</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
@@ -841,14 +841,7 @@ Would log something like
 69
 70
 71
-72
-73
-74
-75
-76
-77
-78
-79</pre>
+72</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 54</span>
@@ -868,13 +861,6 @@ Would log something like
     <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_ingredients'>ingredients</span><span class='period'>.</span><span class='id identifier rubyid_compact!'>compact!</span>
     <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_steps'>steps</span> <span class='op'>=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>directions</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_recipes'>recipes</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_r'>r</span>
-  <span class='kw'>end</span>
-
-  <span class='const'><span class='object_link'><a href="../Recipes.html" title="Recipes (class)">Recipes</a></span></span><span class='period'>.</span><span class='id identifier rubyid_filter_recipes_by_ingredients'><span class='object_link'><a href="../Recipes.html#filter_recipes_by_ingredients-class_method" title="Recipes.filter_recipes_by_ingredients (method)">filter_recipes_by_ingredients</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_recipes'>recipes</span><span class='comma'>,</span> <span class='id identifier rubyid_ingredient_options'>ingredient_options</span><span class='rparen'>)</span>
-  <span class='const'><span class='object_link'><a href="../Recipes.html" title="Recipes (class)">Recipes</a></span></span><span class='period'>.</span><span class='id identifier rubyid_filter_by_dietary'><span class='object_link'><a href="../Recipes.html#filter_by_dietary-class_method" title="Recipes.filter_by_dietary (method)">filter_by_dietary</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_recipes'>recipes</span><span class='comma'>,</span> <span class='id identifier rubyid_dietary_restrictions'>dietary_restrictions</span><span class='rparen'>)</span>
-  <span class='comment'># filter by dietary
-</span>  <span class='id identifier rubyid_recipes'>recipes</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='op'>|</span>
-    <span class='id identifier rubyid_r'>r</span><span class='period'>.</span><span class='id identifier rubyid_dietary_blocked?'>dietary_blocked?</span><span class='lparen'>(</span><span class='id identifier rubyid_dietary_restrictions'>dietary_restrictions</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_recipes'>recipes</span>
@@ -930,15 +916,15 @@ Would log something like
       <pre class="lines">
 
 
-87
-88
-89
-90
-91
-92</pre>
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_search_hash'>search_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='const'>URI</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://guac-is-extra.herokuapp.com</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -977,12 +963,12 @@ Would log something like
       <pre class="lines">
 
 
-126
-127
-128</pre>
+119
+120
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'app/services/api_recipe/guac_is_extra.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_text_input_hint'>text_input_hint</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>leave blank to find all recipes</span><span class='tstring_end'>&#39;</span></span>
@@ -997,7 +983,7 @@ Would log something like
 </div>
 
       <div id="footer">
-  Generated on Fri Dec 15 09:44:21 2023 by
+  Generated on Fri Dec 15 10:40:12 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>

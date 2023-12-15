@@ -17,7 +17,14 @@ class Search
   # dietary_ids to limit by
   #
   # @return [Array(Recipe)] returns array of recipes filtered by inputs
-  def search(query = '', ingredient_options: {}, dietary_restrictions: [])
-    @klass.search(query, ingredient_options:, dietary_restrictions:)
+  def search(query = '',
+             ingredient_options: {},
+             dietary_restrictions: [],
+             and_or: {})
+    and_or.reverse_merge(included: 'AND', excluded: 'AND')
+    recipes = @klass.search(query, ingredient_options:, dietary_restrictions:)
+    Recipes.filter_recipes_by_ingredients(recipes, ingredient_options, and_or)
+    Recipes.filter_by_dietary(recipes, dietary_restrictions)
+    recipes
   end
 end

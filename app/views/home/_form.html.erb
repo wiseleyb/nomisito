@@ -16,7 +16,27 @@
     <tbody>
       <tr valign=top>
         <td class='form-select-table-td'>
-          <p class='small-note'>Options are combined with AND.</p>
+          <p class='small-note'>
+            Ingredient options are combined with:
+            <br/>
+            <b>include:</b>
+            <%= radio_button_tag :included_and_or,
+              'AND',
+              params[:included_and_or] == 'AND' ||
+                params[:included_and_or].blank? %> AND
+            <%= radio_button_tag :included_and_or,
+              'OR',
+              params[:included_and_or] == 'OR' %> OR
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <b>exclude:</b>
+            <%= radio_button_tag :excluded_and_or,
+              'AND',
+              params[:excluded_and_or] == 'AND' ||
+                params[:excluded_and_or].blank? %> AND
+            <%= radio_button_tag :excluded_and_or,
+              'OR',
+              params[:excluded_and_or] == 'OR' %> OR
+          </p>
           <div class='selection-form-div'>
             <%= render partial: 'ingredient_form' %>
           </div>

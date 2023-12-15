@@ -11,8 +11,7 @@
   }
   .small-note {
     font-size: small;
-    padding: 2px;
-    margin: 2px;
+    margin-top: -10px;
   }
   .form-select-table-td {
     border: solid 2px black;
@@ -59,8 +58,13 @@
 <div class='main-body-div'>
   <h1><%= link_to 'Nomisito: Recipe Search', root_path %></h1>
 
-  <p><%= link_to 'Yardoc Code Documentation',
-    '/doc/index.html', target: '_yard' %></p>
+  <p>
+    <%= link_to 'Yardoc Code Documentation',
+      '/doc/index.html', target: '_yard' %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to 'Code for this site',
+      'https://github.com/wiseleyb/nomisito', target: '_github' %>
+  </p>
 
   <hr/>
 

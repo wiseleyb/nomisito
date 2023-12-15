@@ -9,7 +9,12 @@ class Recipe
   attr_accessor :name
   # @return [Array(Ingredient)] ingredients in recipe
   attr_accessor :ingredients
+  # @return [Array(String)] ingredients_desc ingredient descriptions
   attr_accessor :ingredients_desc, :site_klass, :steps
+  # return [Boolean] ingredients_included_ok True if required ingredients met
+  attr_accessor :ingredients_included_ok
+  # return [Boolean] ingredients_included_ok True if excluded ingredients met
+  attr_accessor :ingredients_excluded_ok
 
   def initialize(name,
                  site_klass,
@@ -21,6 +26,8 @@ class Recipe
     @ingredients = Array(ingredients).compact
     @ingredients_desc = Array(ingredient_desc).compact
     @steps = Array(steps)
+    @ingredients_included_ok = true
+    @ingredients_excluded_ok = true
   end
 
   def dietary_blocked?(dietary_restrictions)

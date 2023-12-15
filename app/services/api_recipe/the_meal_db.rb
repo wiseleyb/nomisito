@@ -90,9 +90,6 @@ module ApiRecipe
           recipes << recipe
         end
 
-        Recipes.filter_recipes_by_ingredients(recipes, ingredient_options)
-        Recipes.filter_by_dietary(recipes, dietary_restrictions)
-
         recipes
       end
 

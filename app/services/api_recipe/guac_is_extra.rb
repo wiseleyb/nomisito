@@ -68,13 +68,6 @@ module ApiRecipe
           recipes << r
         end
 
-        Recipes.filter_recipes_by_ingredients(recipes, ingredient_options)
-        Recipes.filter_by_dietary(recipes, dietary_restrictions)
-        # filter by dietary
-        recipes.delete_if do |r|
-          r.dietary_blocked?(dietary_restrictions)
-        end
-
         recipes
       end
 

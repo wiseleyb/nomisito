@@ -435,13 +435,19 @@
 
 20
 21
-22</pre>
+22
+23
+24
+25</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/services/search.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>ingredient_options:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>dietary_restrictions:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='ivar'>@klass</span><span class='period'>.</span><span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='label'>ingredient_options:</span><span class='comma'>,</span> <span class='label'>dietary_restrictions:</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_recipes'>recipes</span> <span class='op'>=</span> <span class='ivar'>@klass</span><span class='period'>.</span><span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='label'>ingredient_options:</span><span class='comma'>,</span> <span class='label'>dietary_restrictions:</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Recipes.html" title="Recipes (class)">Recipes</a></span></span><span class='period'>.</span><span class='id identifier rubyid_filter_recipes_by_ingredients'><span class='object_link'><a href="Recipes.html#filter_recipes_by_ingredients-class_method" title="Recipes.filter_recipes_by_ingredients (method)">filter_recipes_by_ingredients</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_recipes'>recipes</span><span class='comma'>,</span> <span class='id identifier rubyid_ingredient_options'>ingredient_options</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Recipes.html" title="Recipes (class)">Recipes</a></span></span><span class='period'>.</span><span class='id identifier rubyid_filter_by_dietary'><span class='object_link'><a href="Recipes.html#filter_by_dietary-class_method" title="Recipes.filter_by_dietary (method)">filter_by_dietary</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_recipes'>recipes</span><span class='comma'>,</span> <span class='id identifier rubyid_dietary_restrictions'>dietary_restrictions</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_recipes'>recipes</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -453,7 +459,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Dec 15 09:44:21 2023 by
+  Generated on Fri Dec 15 10:40:11 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>
