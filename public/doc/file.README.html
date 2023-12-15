@@ -58,13 +58,51 @@
       </div>
 
       <div id="content"><div id='filecontents'>
-<h1 id="label-Nomisito">Nomisito</h1>
+<h1 id="label-Nomisito+code+example">Nomisito code example</h1>
 
 <p>Nomisito: play on Nom nom + necisito (Spanish: need)</p>
 
 <p>This is a screening code test for a company.</p>
 
-<h2 id="label-Challenge">Challenge</h2>
+<h2 id="label-What-27s+being+delivered">What’s being delivered</h2>
+
+<p>A very basic UI can be used to hit a modularized backend supporting two APIs with an interface design that should be easy to extend to future APIs.</p>
+<ul><li>
+<p><strong>Live site</strong> (Heroku): <a href="https://nomisito-46f260c218eb.herokuapp.com/">nomisito-46f260c218eb.herokuapp.com/</a></p>
+</li><li>
+<p><strong>Source code</strong> <a href="https://github.com/wiseleyb/nomisito">github.com/wiseleyb/nomisito</a></p>
+</li><li>
+<p><strong>Code documentation:</strong> <a href="https://nomisito-46f260c218eb.herokuapp.com/doc/index.html">nomisito-46f260c218eb.herokuapp.com/doc/index.html</a> (Google-Chrome might warn this is dangerous - it’s not - it’s just standard Yardoc - didn’t spend anytime fixing that)</p>
+</li><li>
+<p><strong>API keys</strong> (will be emailed)</p>
+</li></ul>
+
+<p>Assumptions/Hacks/Shortcuts</p>
+<ul><li>
+<p>This assumes that it only needs to search one API at a time (so no combined search results)</p>
+</li><li>
+<p>For the second API (TheMealDb) I didn’t implement paging - just to save time, and keep things simple. This can be wonky given occasional missing ingredients.</p>
+</li><li>
+<p>Most APIs I looked at (that even offered) ingredient filters were inconsistent with AND vs OR for filtering. Given that I do this post API search. I originally had this on the per API level … but that makes the UI inconsistent. You could do this either way though - this was simpler.</p>
+</li><li>
+<p>I used <a href="https://www.edamam.com/">Edamam</a> for dietary-restrictions. That service is significantly rate-limited (35/min) on the free account. It returns a ton of information - but I’m just using the dietary restrictions for this task (to keep it simple).</p>
+</li><li>
+<p>I store the return values of Edamam in a jsonb field. This is a hack but allows debugging/development/testing without having to constantly hit their API. IRL you’d probably clean this up (parse out what you need and store only that).</p>
+</li><li>
+<p>API calls are all in one place but I’m not doing things like handling timeouts, retries, etc - which would also be standard in a production app.</p>
+</li><li>
+<p>Specs are minimal and mostly there to show that I know how to write specs</p>
+</li><li>
+<p>Most of rubocop is supported (formatting)</p>
+</li><li>
+<p>You might notice the 20MB seeds.rb file… this was to make getting this running on your box as simple and foolproof as possible. I wouldn’t do this in a real project. You can still populate the DB via API calls, but it’s slow due to rate limits.</p>
+</li><li>
+<p>The UI is extremely basic, like Craigslist level :) I figured this was mostly a backend exercise.</p>
+</li><li>
+<p>Docker files are included to run this in dev (in case your dev box doesn’t have Postgres or something)</p>
+</li></ul>
+
+<h2 id="label-Challenge+-28from+the+company+requesting+this-29">Challenge (from the company requesting this)</h2>
 
 <h3 id="label-Goal">Goal</h3>
 
@@ -101,11 +139,42 @@
 <p><a href="https://www.themealdb.com/api.php">www.themealdb.com/api.php</a></p>
 </li></ul>
 
+<h2 id="label-SaaS+thoughts">SaaS thoughts</h2>
+
+<pre class="code ruby"><code class="ruby">Finally, imagine you want to turn this into a software product and sell it to
+the public. What would your recommendations be for an easily scalable SaaS
+product and its accompanying infrastructure? We&#39;re not expecting an essay or
+full proposal, just some thoughtful recommendations about how you would build
+and deploy this as a SaaS product. Feel free to document your response in a
+README.
+</code></pre>
+
+<p>There’s one major decision which effects everything else: is your product searching all APIs or per API. Are you seeking to combine everything into a unified look/feel or allow users to get the most out of each API? For example GuacIsExtra doesn’t have images, while TheMealDb does… that’s a pretty different UI experience.</p>
+
+<p>In either case, I don’t think this works as a real-time API call solution. I would approach this by caching data and running download load jobs behind the scenes. This makes the most sense to me as a full-text search problem give the nearly infinite number of ingredients (and variations).</p>
+
+<p>Other challenges include the dietary restrictions requirement. This is super complex. Unless you have a huge budget you’re realistically relying on something like <a href="https://www.edamam.com/">Edamam</a> or <a href="https://spoonacular.com/food-api">Spoontacular</a> to figure out ingredient information like dietary restrictions (Vegan, etc), or calories, recipe sugar content, etc. Screwing something up like peanut allergies also has significant legal liability (example: can you use peanut oil if you have peanut allergies?)</p>
+
+<p>My general approach would be:</p>
+<ul><li>
+<p>Download all data available for a given API.</p>
+</li><li>
+<p>Use a consistent service to categorize what is needed. Sites like Spoontacular do a pretty good job of taking a text recipes and figuring out ingredients, steps, etc. Sites like Edamam do a good job of giving you calories, dietary restrictions, etc for ingredients. Doing this manually probably isn’t realistic given something like 200,000+ ingredients. Using this approach would allow you do use very simple data as well, like my terrible <a href="https://github.com/wiseleyb/recipe-files">recipe site</a> and have that work just as well as API Recipe sites.</p>
+</li><li>
+<p>Leverage something like ElasticSearch to support full-text search. In a pinch you could do this in Postgres - but it’s slow and not great. A Large Language Model (ChatGPT/Gemini-type products) would be an interesting option for this as well.</p>
+</li><li>
+<p>Figure out an update schedule to keep data fresh (run as cron jobs on multiple servers async, periodically)</p>
+</li><li>
+<p>Use some basic login/api-key type auth to determine what customers have access to, how many searches, they’re allowed, filter-to-some-specification (like maybe your Saas offers Paleo recipes only options or maybe cooking-for-two), etc.</p>
+</li><li>
+<p>Depending on goals, costs, and traffic expectations you could do this as a monolithic app (mutli-tenant) or give each new client their own servers (single-tenant). Both have advantages/disadvantages.</p>
+</li></ul>
+
 <h2 id="label-Setup">Setup</h2>
 
 <h3 id="label-Setup+without+docker">Setup without docker</h3>
 
-<p>This assumes you have postgres installed in running… this can be a hassle. It might be easier to setup via docker.</p>
+<p>This assumes you have Postgres installed and running… this can be a hassle. It might be easier to setup via Docker (see below).</p>
 
 <pre class="code ruby"><code class="ruby">git co https://github.com/wiseleyb/nomisito/
 cd nomisito
@@ -132,28 +201,49 @@ dcup
 </code></pre>
 
 <p><a href="http://0.0.0.0:3000/">open http://0.0.0.0:3000/</a></p>
-
-<p>Run specs <code>dcrspec</code> Run rubocop <code>dccop</code> Run rails console <code>dccon</code> Run postgres console <code>dcpsql</code></p>
+<ul><li>
+<p>Run specs <code>dcrspec</code></p>
+</li><li>
+<p>Run rubocop <code>dccop</code></p>
+</li><li>
+<p>Run rails console <code>dccon</code></p>
+</li><li>
+<p>Run postgres console <code>dcpsql</code></p>
+</li></ul>
 
 <h2 id="label-Heroku">Heroku</h2>
 
-<p>url: <a href="https://nomisito-46f260c218eb.herokuapp.com">nomisito-46f260c218eb.herokuapp.com</a>/</p>
+<p>This is up on Heroku at<br> <a href="https://nomisito-46f260c218eb.herokuapp.com/">nomisito-46f260c218eb.herokuapp.com/</a></p>
 
-<p>bundle lock –add-platform x86_64-linux git push heroku main add env keys to heroku heroku logs –tails heroku run rake db:migrate</p>
+<p>Some hacks if deploying to new Heroku instance:</p>
+
+<pre class="code ruby"><code class="ruby">bundle lock --add-platform x86_64-linux
+git push heroku main
+add env keys to heroku
+heroku logs --tails
+heroku run rake db:create db:migrate db:seed
+</code></pre>
 
 <h2 id="label-Yard+Documentation">Yard Documentation</h2>
 
-<p>Put yard doc in public to easily view on live site <code>echo --output-dir public/doc &gt;&gt; .yardopts</code></p>
+<p>Yard docs are up on Heroku right now <a href="https://nomisito-46f260c218eb.herokuapp.com/doc/index.html">nomisito-46f260c218eb.herokuapp.com/doc/index.html</a></p>
 
-<p>Cheat sheets: * <a href="https://gist.github.com/chetan/1827484">gist.github.com/chetan/1827484</a> * <a href="https://kapeli.com/cheat_sheets/Yard.docset/Contents/Resources/Documents/index">kapeli.com/cheat_sheets/Yard.docset/Contents/Resources/Documents/index</a></p>
+<p>Some yard notes:</p>
 
-<p>Build yard docs: <code>yard</code> View docs: <code>yard server</code> then open <a href="https://localhost:8808">localhost:8808</a></p>
+<pre class="code ruby"><code class="ruby">Put yard doc in public to easily view on live site
+echo --output-dir public/doc &gt;&gt; .yardopts
 
-<p><a href="https://nomisito-46f260c218eb.herokuapp.com/doc/index.html">Live on Heroku Docs</a></p>
+Cheat sheets:
+* https://gist.github.com/chetan/1827484
+* https://kapeli.com/cheat_sheets/Yard.docset/Contents/Resources/Documents/index
+
+Build yard docs: yard
+View docs: yard server then open https://localhost:8808
+</code></pre>
 </div></div>
 
       <div id="footer">
-  Generated on Fri Dec 15 09:44:21 2023 by
+  Generated on Fri Dec 15 13:03:46 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>
