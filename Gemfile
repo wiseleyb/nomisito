@@ -60,6 +60,14 @@ gem 'httparty'
 # https://yardoc.org/
 gem 'yard'
 
+# Dumps database to seeds.rb
+# Since this site relies on tons of api calls that are rate limited this is
+# a faster way to get started
+# bundle exec rake db:seed:dump
+# then reload 
+# bundle exec rake db:seed (this will drop all ingredients and dietary rows)
+gem 'seed_dump'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]

@@ -235,6 +235,9 @@ GEM
       parser (>= 3.2.1.0)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
+    seed_dump (3.3.1)
+      activerecord (>= 4)
+      activesupport (>= 4)
     selenium-webdriver (4.16.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -298,6 +301,7 @@ DEPENDENCIES
   redis (~> 4.0)
   rspec-rails (~> 6.1.0)
   rubocop
+  seed_dump
   selenium-webdriver
   sprockets-rails
   stimulus-rails

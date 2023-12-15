@@ -55,9 +55,16 @@ explain why you chose the API you're using.
 ## Setup
 
 ```
-rake db:create
-rake db:migrate
-rake setup:reset
+git co https://github.com/wiseleyb/nomisito/
+cd nomisito
+bundle install
+rake db:create db:migrate db:seed
+
+# You can also populate the data from the actual APIs... this is pretty
+# slow do to rate limiting.
+# rake setup:reset
+
+open http://localhost:3000/
 ```
 
 ## Heroku
