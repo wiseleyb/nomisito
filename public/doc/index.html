@@ -151,7 +151,7 @@ README.
 
 <p>There’s one major decision which effects everything else: is your product searching all APIs or per API. Are you seeking to combine everything into a unified look/feel or allow users to get the most out of each API? For example GuacIsExtra doesn’t have images, while TheMealDb does… that’s a pretty different UI experience.</p>
 
-<p>In either case, I don’t think this works as a real-time API call solution. I would approach this by caching data and running download load jobs behind the scenes. This makes the most sense to me as a full-text search problem give the nearly infinite number of ingredients (and variations).</p>
+<p>In either case, I don’t think this works as a real-time API call solution. I would approach this by caching data and running download jobs behind the scenes. This makes the most sense to me as a full-text search problem give the nearly infinite number of ingredients (and variations).</p>
 
 <p>Other challenges include the dietary restrictions requirement. This is super complex. Unless you have a huge budget you’re realistically relying on something like <a href="https://www.edamam.com/">Edamam</a> or <a href="https://spoonacular.com/food-api">Spoontacular</a> to figure out ingredient information like dietary restrictions (Vegan, etc), or calories, recipe sugar content, etc. Screwing something up like peanut allergies also has significant legal liability (example: can you use peanut oil if you have peanut allergies?)</p>
 
@@ -159,7 +159,7 @@ README.
 <ul><li>
 <p>Download all data available for a given API.</p>
 </li><li>
-<p>Use a consistent service to categorize what is needed. Sites like Spoontacular do a pretty good job of taking a text recipes and figuring out ingredients, steps, etc. Sites like Edamam do a good job of giving you calories, dietary restrictions, etc for ingredients. Doing this manually probably isn’t realistic given something like 200,000+ ingredients. Using this approach would allow you do use very simple data as well, like my terrible <a href="https://github.com/wiseleyb/recipe-files">recipe site</a> and have that work just as well as API Recipe sites.</p>
+<p>Use a consistent service to categorize what is needed. Sites like Spoontacular do a pretty good job of taking a text recipes and figuring out ingredients, steps, etc. Sites like Edamam do a good job of giving you calories, dietary restrictions, etc for ingredients. Doing this manually probably isn’t realistic given something like 200,000+ ingredients. Using this approach would allow you to use very simple data as well, like my terrible <a href="https://github.com/wiseleyb/recipe-files">recipe site</a>, and have that work just as well as API Recipe sites.</p>
 </li><li>
 <p>Leverage something like ElasticSearch to support full-text search. In a pinch you could do this in Postgres - but it’s slow and not great. A Large Language Model (ChatGPT/Gemini-type products) would be an interesting option for this as well.</p>
 </li><li>
@@ -243,7 +243,7 @@ View docs: yard server then open https://localhost:8808
 </div></div>
 
       <div id="footer">
-  Generated on Fri Dec 15 13:03:46 2023 by
+  Generated on Fri Dec 15 13:24:24 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>
