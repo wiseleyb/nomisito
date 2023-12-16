@@ -164,6 +164,9 @@ might be easier to setup via Docker (see below).
 ```
 git co https://github.com/wiseleyb/nomisito/
 cd nomisito
+brew install yarn npm
+npm upgrade
+npm install
 bundle install
 rake db:create db:migrate db:seed
 
@@ -171,6 +174,7 @@ rake db:create db:migrate db:seed
 # slow do to rate limiting.
 # rake setup:reset
 
+bin/dev 
 open http://localhost:3000/
 ```
 
