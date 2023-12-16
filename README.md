@@ -158,15 +158,24 @@ cooking-for-two), etc.
 
 ### Setup without docker
 
+If you need 3.2.2 install it. If you don't have a ruby version manager I'd
+suggest using
+[asdf](https://www.jdeen.com/blog/installing-ruby-using-asdf-in-macos)
+
 Get .env file from a developer with API keys
 
 This assumes you have Postgres installed and running... this can be a hassle. It
 might be easier to setup via Docker (see below).
 
+If you're wondering about the npm/yard nonsense... architecture is hardcoded
+so if you're intel vs amd vs etc - this might fail - so just rebuild
+
 ```
 git clone https://github.com/wiseleyb/nomisito/
 cd nomisito
 brew install yarn npm
+rm -rf node_modules
+rm -f yarn.lock
 npm upgrade
 npm install
 bundle install
