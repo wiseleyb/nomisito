@@ -158,11 +158,13 @@ cooking-for-two), etc.
 
 ### Setup without docker
 
+Get .env file from a developer with API keys
+
 This assumes you have Postgres installed and running... this can be a hassle. It
 might be easier to setup via Docker (see below).
 
 ```
-git co https://github.com/wiseleyb/nomisito/
+git clone https://github.com/wiseleyb/nomisito/
 cd nomisito
 brew install yarn npm
 npm upgrade
@@ -180,9 +182,19 @@ open http://localhost:3000/
 
 ### Setup with Docker
 
+Get .env file from a developer with API keys
+
 Get [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 [Add aliases](https://gist.github.com/wiseleyb/e12fd7686274457e4fb69b491ee45329)
+
+On one of my laptops I had to run this before running docker commands - still debugging. If you run into sprokets issues try this:
+
+```
+brew install yarn npm
+npm upgrade
+npm install
+```
 
 ```
 dcbuild
@@ -190,6 +202,7 @@ dcrake db:create db:migrate db:seed
 dcrake db:create RAILS_ENV=test
 dcup
 ```
+
 [open http://0.0.0.0:3000/](http://0.0.0.0:3000/)
 
 * Run specs `dcrspec`
